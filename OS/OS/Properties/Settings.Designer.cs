@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace OS_cpu.Properties
+namespace OS.Properties
 {
 
 

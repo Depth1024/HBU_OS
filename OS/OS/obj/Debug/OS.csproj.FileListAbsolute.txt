@@ -1,0 +1,9 @@
+D:\Github\HBU_OS\OS\OS\bin\Debug\OS.exe.config
+D:\Github\HBU_OS\OS\OS\bin\Debug\OS.exe
+D:\Github\HBU_OS\OS\OS\bin\Debug\OS.pdb
+D:\Github\HBU_OS\OS\OS\obj\Debug\OS.csprojAssemblyReference.cache
+D:\Github\HBU_OS\OS\OS\obj\Debug\OS.Properties.Resources.resources
+D:\Github\HBU_OS\OS\OS\obj\Debug\OS.csproj.GenerateResource.cache
+D:\Github\HBU_OS\OS\OS\obj\Debug\OS.exe
+D:\Github\HBU_OS\OS\OS\obj\Debug\OS.pdb
+D:\Github\HBU_OS\OS\OS\obj\Debug\OS.Form_main.resources
