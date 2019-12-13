@@ -1,0 +1,9 @@
+D:\Github\HBU_OS\OS_Simulation\bin\Debug\OS_Simulation.exe.config
+D:\Github\HBU_OS\OS_Simulation\bin\Debug\OS_Simulation.exe
+D:\Github\HBU_OS\OS_Simulation\bin\Debug\OS_Simulation.pdb
+D:\Github\HBU_OS\OS_Simulation\obj\Debug\OS_Simulation.csprojAssemblyReference.cache
+D:\Github\HBU_OS\OS_Simulation\obj\Debug\OS_Simulation.Properties.Resources.resources
+D:\Github\HBU_OS\OS_Simulation\obj\Debug\OS_Simulation.csproj.GenerateResource.cache
+D:\Github\HBU_OS\OS_Simulation\obj\Debug\OS_Simulation.exe
+D:\Github\HBU_OS\OS_Simulation\obj\Debug\OS_Simulation.pdb
+D:\Github\HBU_OS\OS_Simulation\obj\Debug\OS_Simulation.Form_main.resources

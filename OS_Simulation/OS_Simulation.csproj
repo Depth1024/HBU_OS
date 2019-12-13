@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{19F1146A-DF68-42AF-A7EE-8C620644D16E}</ProjectGuid>
+    <ProjectGuid>{FA97B0FF-A29F-49E8-B578-C3CFD0351DD3}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>OS</RootNamespace>
-    <AssemblyName>OS</AssemblyName>
+    <RootNamespace>OS_Simulation</RootNamespace>
+    <AssemblyName>OS_Simulation</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CPU.cs" />
     <Compile Include="Form_main.cs">
       <SubType>Form</SubType>
     </Compile>

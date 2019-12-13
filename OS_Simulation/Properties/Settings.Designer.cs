@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace OS.Properties
+namespace OS_Simulation.Properties
 {
 
 
