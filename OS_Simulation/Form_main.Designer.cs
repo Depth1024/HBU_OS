@@ -30,13 +30,15 @@
         {
             this.groupBox_power = new System.Windows.Forms.GroupBox();
             this.button_power = new System.Windows.Forms.Button();
+            this.groupBox_storage = new System.Windows.Forms.GroupBox();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.groupBox_power.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox_power
             // 
             this.groupBox_power.Controls.Add(this.button_power);
-            this.groupBox_power.Location = new System.Drawing.Point(8, 8);
+            this.groupBox_power.Location = new System.Drawing.Point(1093, 12);
             this.groupBox_power.Name = "groupBox_power";
             this.groupBox_power.Size = new System.Drawing.Size(95, 64);
             this.groupBox_power.TabIndex = 0;
@@ -55,11 +57,22 @@
             this.button_power.UseVisualStyleBackColor = false;
             this.button_power.Click += new System.EventHandler(this.button_power_Click);
             // 
+            // groupBox_storage
+            // 
+            this.groupBox_storage.Location = new System.Drawing.Point(835, 98);
+            this.groupBox_storage.Name = "groupBox_storage";
+            this.groupBox_storage.Size = new System.Drawing.Size(337, 690);
+            this.groupBox_storage.TabIndex = 1;
+            this.groupBox_storage.TabStop = false;
+            this.groupBox_storage.Text = "内存占用情况";
+            this.groupBox_storage.Enter += new System.EventHandler(this.groupBox_storage_Enter);
+            // 
             // Form_main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1200, 800);  // 控制窗体大小
+            this.ClientSize = new System.Drawing.Size(1200, 800);
+            this.Controls.Add(this.groupBox_storage);
             this.Controls.Add(this.groupBox_power);
             this.Name = "Form_main";
             this.Text = "Form_main";
@@ -73,6 +86,8 @@
 
         private System.Windows.Forms.GroupBox groupBox_power;
         private System.Windows.Forms.Button button_power;
+        private System.Windows.Forms.GroupBox groupBox_storage;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
     }
 }
 
