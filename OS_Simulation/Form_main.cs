@@ -23,14 +23,15 @@ namespace OS_Simulation
         #region 对象实例化
         // 实例化CPU
         public CPU _cpu = new CPU();
+        //实例化主存储器
+        public Storage _storage = new Storage();
         // 实例化三个队列
         public Block _block = new Block();
-        Execute _execute = new Execute();
-        Ready _ready = new Ready();
+        public Execute _execute = new Execute();
+        public Ready _ready = new Ready();
         // 实例化空白PCB队列
-        Free _free = new Free();
-        //实例化主存储器
-        Storage _storage = new Storage();
+        public Free _free = new Free();
+        
         #endregion
 
         // 电源键
@@ -41,6 +42,8 @@ namespace OS_Simulation
             {
                 button_power.Text = "关机";
                 button_power.BackColor = Color.Red;
+                // 开机时，初始化空白PCB队列
+                _cpu.initFreePCB(_free);
                 
              }
             else if (button_power.Text == "关机")

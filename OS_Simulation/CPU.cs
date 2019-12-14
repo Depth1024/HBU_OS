@@ -96,9 +96,9 @@ namespace OS_Simulation
         public int TIME;
 
         // PCB队列
-        public PCB[] PCBarray = new PCB[8];
+        public PCB[] PCBarray = new PCB[9];// 多设置一个PCB块，便于置空
 
-        
+
 
         #region 初始化cpu
         // 设置初始化cpu的方法
@@ -153,6 +153,7 @@ namespace OS_Simulation
         }
 
         // 调度函数
+        #region getPcbFromFreequeue
         // 从空白PCB队列中取出一个空白的PCB块
         public int getPcbFromFreequeue(Free _free)
         {
@@ -172,12 +173,35 @@ namespace OS_Simulation
             }
             return pcbNo;
         }
+        #endregion
+        
+        #region recoveryPcbFromExecuteToFree
+        // 执行完毕，回收PCB块到Free队列队尾
+        public void fromExecuteToFree(Execute _execute,Free _free,int pcbNo)  
+        // pcb_num为PCB块的内部标识符
+        {
+            // 用空PCB块PCB[8]格式化PCB块
+            PCBarray[pcbNo] = PCBarray[8];
+            // 将该PCB块插入Free队列
+            _free.PCBqueue[_free.num] = PCBarray[pcbNo];
+            _free.num++;
+        }
+        #endregion
+
+        public void blockPcbFromExecute(int pcbNo,Block _block,Execute _execute)
+        {
+
+        }
+
+
+        // 进程管理函数
+        #region 创建进程Create
         // 创建进程
-        public void create(Free _free,Ready _ready,Label[] label_storage,Storage _storage,string instructions)  // 创建进程时输入指令
+        public void create(Free _free,Ready _ready,Label[] label_storage,Storage _storage,CPU _cpu,string instructions)  // 创建进程时输入指令
         {
             
             // 申请空白进程控制块,得到空闲PCB的内部标识符
-            int pcbNo = getPcbFromFreequeue(_free);
+            int pcbNo = _cpu.getPcbFromFreequeue(_free);
             if (pcbNo == 0)
             {
                 MessageBox.Show("无可用空闲PCB块", "创建进程失败", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation);
@@ -188,7 +212,7 @@ namespace OS_Simulation
                 _storage.allocate(pcbNo,instructions, _storage,label_storage);
                 // 初始化进程控制块
                 PCBarray[pcbNo].PSW = Interrupt.none;    // 无中断
-                PCBarray[pcbNo].IR = instructions;  // 无指令
+                PCBarray[pcbNo].IR = "";  // IR存指令
                 PCBarray[pcbNo].PC = 0;   // 指令地址置零
                 PCBarray[pcbNo].DR = 0;   // x的值置零
                 PCBarray[pcbNo].state = ProcessState.ready;   // 初始化进程状态为  空闲
@@ -198,22 +222,33 @@ namespace OS_Simulation
                 _ready.PCBqueue[_ready.num - 1] = PCBarray[pcbNo];
             }
         }
+        #endregion
+
+        #region 终止进程 Destroy
         // 进程的终止
-        public void destroy()
+        public void destroy(int pcb_num, Free _free, Execute _execute, Label[] label_storage, Storage _storage,CPU _cpu)
         {
             // 将结果写入out文件
             // 回收主存
-
+            _storage.recovery(pcb_num, _free, _execute, label_storage, _storage);
             // 回收进程控制块；
-
+            _cpu.fromExecuteToFree(_execute, _free, pcb_num);
         }
+        #endregion
+
+
         // 进程的阻塞
-        public void block()
+        public void block(int pcbNo,Execute _execute,Block _block,CPU _cpu)
         {
-            // 立即停止执行，把PCB的现行状态由execute改为block 
-            // 将其插入阻塞队列
-            // 最后，转到调度程序进行重新调度，将处理机分配给另一就绪进程并进行切换；在PCB中保留被阻塞进程的处理机
-            // 状态，再按新进程的PCB中的处理机状态设置处理机环境
+            // 保存运行进程的CPU现场
+            PCBarray[pcbNo].PSW = _cpu.PSW;    // 无中断
+            PCBarray[pcbNo].IR = _cpu.IR;  // 无指令
+            PCBarray[pcbNo].PC = _cpu.PC;   // 指令地址置零
+            PCBarray[pcbNo].DR = _cpu.DR;   // x的值置零
+            // 修改进程状态
+            PCBarray[pcbNo].state = ProcessState.block;
+            // 将进程链入对应的阻塞队列，然后转向进程调度
+
         }
         // 进程的唤醒
         public void wakeup()

@@ -67,7 +67,7 @@ namespace OS_Simulation
             }
         }
         #endregion
-
+        
         // 内存回收
         public void recovery(int pcb_num,Free _free,Execute _execute,Label[] label_storage,Storage _storage)
         {
