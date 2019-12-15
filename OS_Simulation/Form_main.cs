@@ -35,7 +35,7 @@ namespace OS_Simulation
         #endregion
 
         // 电源键
-        private void button_power_Click(object sender, EventArgs e)
+        public void button_power_Click(object sender, EventArgs e)
         {
             // 设置开机、关机的切换
             if (button_power.Text == "开机")
@@ -44,8 +44,11 @@ namespace OS_Simulation
                 button_power.BackColor = Color.Red;
                 // 开机时，初始化空白PCB队列
                 _cpu.initFreePCB(_free);
-                
-             }
+                // 开始计时
+                this.timer1.Start();
+                // 启动cpu
+                cpu(); 
+            }
             else if (button_power.Text == "关机")
             {
                 button_power.Text = "开机";
@@ -84,6 +87,7 @@ namespace OS_Simulation
                 switch (_cpu.PSW)
                 {
                     case Interrupt.clock:   //时间片中断
+                    // 因时间片耗尽引起的中断，对执行中的进程进行处理
                         {
 
                             break;
@@ -112,7 +116,103 @@ namespace OS_Simulation
 
         }
 
+        #region useless
+        // 内存显示的groupBox
         private void groupBox_storage_Enter(object sender, EventArgs e)
+        {
+
+        }
+        // 运行结果显示的groupBox
+        private void groupBox_result_Enter(object sender, EventArgs e)
+        {
+
+        }
+        // 设备状态显示的groupBox
+        private void groupBox_device_Enter(object sender, EventArgs e)
+        {
+
+        }
+        // 三个描述设备占用状态的label
+        private void deviceA1state_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void deviceA2state_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void deviceA3state_Click(object sender, EventArgs e)
+        {
+
+        }
+
+
+        #endregion
+
+        // 创建进程1
+        private void btn_createProcess1_Click(object sender, EventArgs e)
+        {
+            string instruction1 = "x=0;x++;x++;x--;end;";
+            int num = 0;
+            num = _cpu.create(_free, _ready, label_storage, _storage, _cpu, instruction1);
+            deviceA1state.Text = num.ToString();
+        }
+
+        // 创建进程2
+        private void btn_createProcess2_Click(object sender, EventArgs e)
+        {
+            string instruction2 = "x=0;x++;x++;x--;end;";
+            int num = 0;
+            num = _cpu.create(_free, _ready, label_storage, _storage, _cpu, instruction2);
+            deviceA1state.Text = num.ToString();
+        }
+
+        // 创建进程3
+        private void btn_createProcess3_Click(object sender, EventArgs e)
+        {
+            string instruction3 = "x=0;x++;x++;x--;end;";
+        }
+
+        // 创建进程4
+        private void btn_createProcess4_Click(object sender, EventArgs e)
+        {
+            string instruction4 = "x=0;x++;x++;x--;end;";
+        }
+
+        // 创建进程5
+        private void btn_createProcess5_Click(object sender, EventArgs e)
+        {
+            string instruction5 = "x=0;x++;x++;x--;end;";
+        }
+
+        // 创建进程6
+        private void btn_createProcess6_Click(object sender, EventArgs e)
+        {
+            string instruction6 = "x=0;x++;x++;x--;end;";
+        }
+
+        // 创建进程7
+        private void btn_createProcess7_Click(object sender, EventArgs e)
+        {
+            string instruction7 = "x=0;x++;x++;x--;end;";
+        }
+
+        // 创建进程8
+        private void btn_createProcess8_Click(object sender, EventArgs e)
+        {
+            string instruction8 = "x=0;x++;x++;x--;end;";
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            _cpu.TIME = _cpu.TIME.AddSeconds(1);
+            this.SystmTimerLabel.Text = _cpu.TIME.ToString("HH:mm:ss");
+            
+        }
+
+        private void label4_Click(object sender, EventArgs e)
         {
 
         }

@@ -14,9 +14,10 @@ namespace OS_Simulation
     public class Storage
     {
         // 用128*4大小的数组模拟主存
-        public int[] freeStorage = new int[128];
+        public int[] freeStorage = new int[129];
         // 记录每一块内存被哪个进程占用
-        public int[] pcbStorage = new int[128];
+        public int[] pcbStorage = new int[129];
+        
         #region 内存分配
         // 内存分配算法
         public void allocate(int pcb_num,string instructions,Storage _storage,Label[] label_storage)  
@@ -27,6 +28,7 @@ namespace OS_Simulation
             int record = 0;  // 计算有多少连续的空余内存的变量
             int min = 128;// 最小分区大小
             int storage_num = 0;
+            _storage.freeStorage[128] = 1; // 为内存空间设置一个封底
             
             for(int i = 0; i < 128; i++)
             {
@@ -67,7 +69,8 @@ namespace OS_Simulation
             }
         }
         #endregion
-        
+
+        #region 内存回收
         // 内存回收
         public void recovery(int pcb_num,Free _free,Execute _execute,Label[] label_storage,Storage _storage)
         {
@@ -83,5 +86,6 @@ namespace OS_Simulation
             
             
         }
+        #endregion
     }
 }
