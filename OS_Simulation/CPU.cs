@@ -54,7 +54,8 @@ namespace OS_Simulation
         public ProcessState state; // 描述进程状态
         public int time; // 已用时间
 
-        public int next;  // 表示在队列中的先后关系
+        
+        public int next;  // 表示在队列中的先后关系,存放下一个PCB的内部标识符
     }
 
     // 多设置一个PCB块，便于置空
@@ -82,6 +83,8 @@ namespace OS_Simulation
         public int num;// 队列中空白PCB的数量
         public PCB[] PCBqueue = new PCB[9]; // 队列
     }
+
+    // CPU类
     public class CPU
     {
         // 程序状态寄存器PSW
@@ -97,6 +100,8 @@ namespace OS_Simulation
 
         // PCB队列
         public PCB[] PCBarray = new PCB[9];// 多设置一个PCB块，便于置空
+        // PCB暂存块
+        public PCB tempPCB = new PCB();
 
 
 
@@ -107,7 +112,9 @@ namespace OS_Simulation
             // 初始化空白的PCB
             for (int i = 0; i <= 7; i++)
             {
-                PCBarray[i].num = i+1;   // 内部表示符号 1 2 3 4 5 6 7 8
+                //***********************************************************
+                PCBarray[i].num = i+1;   // 内部表示符号 1 2 3 4 5 6 7 8    *
+                //***********************************************************
                 PCBarray[i].name = "process" + i;
                 PCBarray[i].PSW = Interrupt.none;    // 无中断
                 PCBarray[i].IR = "";  // 无指令
@@ -116,16 +123,11 @@ namespace OS_Simulation
                 PCBarray[i].state = ProcessState.free;   // 初始化进程状态为  空闲
                 PCBarray[i].time = 0;  // 本进程已使用了0时间的处理机
 
-                // 因为时间片轮转算法，所以将其设置为一个循环队列
-                if (i == 7)
-                {
-                    PCBarray[i].next = 0;
-                }
-                else
-                {
-                    PCBarray[i].next = i + 1;
-                }
-
+                // quenum与next置零，在队列中使用
+               
+                PCBarray[i].next = 0;
+               
+               
                
             }
             // 初始化硬件
@@ -143,6 +145,15 @@ namespace OS_Simulation
                 // 将PCB放入空白PCB队列
                 _free.num++;
                 _free.PCBqueue[i] = PCBarray[i];  // 将第i号PCB块放入空白PCB队列
+                if (i < _free.num - 1)
+                {
+                    _free.PCBqueue[i].next = i + 1;
+                }
+                else
+                {
+                    _free.PCBqueue[i].next = 0;
+                }
+                
             }
         }
         
@@ -155,42 +166,104 @@ namespace OS_Simulation
         // 调度函数
         #region getPcbFromFreequeue
         // 从空白PCB队列中取出一个空白的PCB块
-        public int getPcbFromFreequeue(Free _free)
+        // 每次取free队列的第一个PCB
+        public int getPcbFromFreequeue(Free _free,CPU _cpu)
         {
-            int pcbNo = 0;
+            int pcbJudge = 0;
             if (_free.num > 0)  // 有剩余的空白PCB，取出
             {
-                pcbNo = _free.PCBqueue[0].num;  // 将要取出的pcb块的内部标识符存在pcbNo里
-                _free.num--;
-                // 如果空白PCB队列不为空，就把后面的PCB块往前挪，最后一个复制空PCB块置空
-                if (_free.num > 0) 
+                pcbJudge = _free.PCBqueue[0].num;  
+                _cpu.tempPCB = _free.PCBqueue[0];// 将要取出的pcb存在tempPCB里
+                // 如果取出后，空白PCB队列不为空，就把后面的PCB块往前挪，最后一个复制空PCB块置空
+                if (_free.num > 1) 
                 {
-                    for (int i = 1; i <= _free.num+1; i++)
+                    for (int i = 0; i < _free.num; i++)
                     {
-                        _free.PCBqueue[i - 1] = _free.PCBqueue[i];
+                        if (i < _free.num - 1)
+                        {
+                            _free.PCBqueue[i] = _free.PCBqueue[_free.PCBqueue[i].next];
+                        }
+                        else
+                        {
+                            _free.PCBqueue[i] = _free.PCBqueue[8];
+                        }                       
                     }
+                    
                 }
+                _free.num--;
             }
-            return pcbNo;
+            return pcbJudge;
         }
         #endregion
         
         #region recoveryPcbFromExecuteToFree
         // 执行完毕，回收PCB块到Free队列队尾
-        public void fromExecuteToFree(Execute _execute,Free _free,int pcbNo)  
-        // pcb_num为PCB块的内部标识符
+        public void fromExecuteToFree(Execute _execute,Free _free,int pcbNo)
+             // pcbNo表示该PCB在执行队列中的NO.
         {
-            // 用空PCB块PCB[8]格式化PCB块
-            PCBarray[pcbNo] = PCBarray[8];
-            // 将该PCB块插入Free队列
-            _free.PCBqueue[_free.num] = PCBarray[pcbNo];
-            _free.num++;
+            // 先对将被回收的PCB进行格式化处理
+            // _execute.PCBqueue[pcbNo] = _free.PCBqueue[8];
+            // 当前进程位于执行队列中
+            if (_execute.PCBqueue[pcbNo].next == 0)  // 如果是执行队列的最后一个
+            {
+
+                _free.PCBqueue[_free.num] = _execute.PCBqueue[pcbNo];
+                _free.PCBqueue[_free.num].state = ProcessState.free; // 修改进程状态
+                _free.PCBqueue[_free.num] = _free.PCBqueue[8];  // 格式化处理
+                _free.PCBqueue[_free.num - 1].next = _free.num;
+                _free.num++;
+                _execute.PCBqueue[_execute.num - 1] = _execute.PCBqueue[8];  // 格式化处理
+                _execute.num--;
+            }
+            else  // 不是最后一个
+            {
+                _free.PCBqueue[_free.num] = _execute.PCBqueue[pcbNo];
+                _free.PCBqueue[_free.num].state = ProcessState.free; // 修改进程状态
+                _free.num++; 
+                for (int i = pcbNo; i < _execute.num - 2; i++)
+                {
+                    _execute.PCBqueue[i] = PCBarray[_execute.PCBqueue[i].next];
+                }
+                _execute.PCBqueue[_execute.num - 1] = _execute.PCBqueue[8];
+                _execute.num--;
+                if (_execute.num > 1)
+                {
+                    _execute.PCBqueue[_execute.num - 1].next = _execute.PCBqueue[0].num;
+                }
+            }
+
         }
         #endregion
 
+        // 执行->阻塞
         public void blockPcbFromExecute(int pcbNo,Block _block,Execute _execute)
+            // pcbNo表示该PCB在执行队列中的NO.
         {
-
+            // 当前进程位于执行队列中
+            if(_block.PCBqueue[pcbNo].next == 0)  // 如果是执行队列的最后一个
+            {
+                _block.PCBqueue[_block.num] = _execute.PCBqueue[pcbNo];
+                _block.PCBqueue[_block.num].state = ProcessState.block;  // 修改进程状态
+                _block.num++;
+                _execute.PCBqueue[_execute.num - 1] = _execute.PCBqueue[8];  // 用空PCB位格式化
+                _execute.num--;
+            }
+            else
+            {
+                _block.PCBqueue[_block.num] = _execute.PCBqueue[pcbNo];
+                _block.PCBqueue[_block.num].state = ProcessState.block;  // 修改进程状态
+                _block.num++;
+                for(int i = pcbNo;i<_execute.num - 2; i++)
+                {
+                    _execute.PCBqueue[i] = PCBarray[_execute.PCBqueue[i].next];
+                }
+                _execute.PCBqueue[_execute.num - 1] = _execute.PCBqueue[8];
+                _execute.num--;
+                if(_execute.num > 1)
+                {
+                    _execute.PCBqueue[_execute.num - 1].next = _execute.PCBqueue[0].num;
+                }
+            }
         }
 
 
@@ -201,25 +274,37 @@ namespace OS_Simulation
         {
             
             // 申请空白进程控制块,得到空闲PCB的内部标识符
-            int pcbNo = _cpu.getPcbFromFreequeue(_free);
-            if (pcbNo == 0)
+            int pcb_num = _cpu.getPcbFromFreequeue(_free,_cpu);
+            if (pcb_num == 0)
             {
                 MessageBox.Show("无可用空闲PCB块", "创建进程失败", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation);
             }
             else
             {
                 // 主存申请，程序装入模拟主存
-                _storage.allocate(pcbNo,instructions, _storage,label_storage);
-                // 初始化进程控制块
-                PCBarray[pcbNo].PSW = Interrupt.none;    // 无中断
-                PCBarray[pcbNo].IR = "";  // IR存指令
-                PCBarray[pcbNo].PC = 0;   // 指令地址置零
-                PCBarray[pcbNo].DR = 0;   // x的值置零
-                PCBarray[pcbNo].state = ProcessState.ready;   // 初始化进程状态为  空闲
-                PCBarray[pcbNo].time = 0;  // 本进程已使用了0时间的处理机
+                _storage.allocate(pcb_num,instructions, _storage,label_storage);
+               
+                // 更改进程状态为ready
+                _cpu.tempPCB.state = ProcessState.ready;   
+                
                 // 将进程链入就绪队列
+                // _ready.num++;
+                if(_ready.num == 1)
+                {
+                    _ready.PCBqueue[_ready.num] = _cpu.tempPCB;
+                }
+                else if(_ready.num > 1 && _ready.num <= 8)
+                {
+                    _ready.PCBqueue[_ready.num] = _cpu.tempPCB;
+                    // 修改next，使头尾相接，成环形链
+                    _ready.PCBqueue[_ready.num - 1].next = _ready.num;
+                    _ready.PCBqueue[_ready.num].next = 0;
+                }
+                else
+                {
+                    MessageBox.Show("就绪队列满，无法创建进程", "创建进程失败", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation);
+                }
                 _ready.num++;
-                _ready.PCBqueue[_ready.num - 1] = PCBarray[pcbNo];
             }
         }
         #endregion
