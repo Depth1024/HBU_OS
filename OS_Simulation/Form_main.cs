@@ -30,6 +30,8 @@ namespace OS_Simulation
         public Storage _storage = new Storage();
         // 实例化设备
         public Device _device = new Device();
+
+       
         // 实例化三个队列
         public Block _block = new Block();
         public Execute _execute = new Execute();
@@ -135,6 +137,10 @@ namespace OS_Simulation
                     _cpu.PSW = Interrupt.io;
             }else
             {
+               
+
+                
+               
                 // 如果这个进程是才进入执行状态的话
                 if (_execute.PCBqueue[0].state == ProcessState.ready)
                 {
@@ -182,11 +188,12 @@ namespace OS_Simulation
                         {
                             // 设备占用时间--
                             _device.deviceA[0].time--;
-                            deviceA1state.Text = "空闲";
-                            ProcessnameA1.Text = "null";
+                            
                             // 如果设备占用时间到，就回收一个
                             if (_device.deviceA[0].time == 0)
                             {
+                                deviceA1state.Text = "空闲";
+                                ProcessnameA1.Text = "null";
                                 _device.recoveryDevice(_cpu, _device, _ready, _block, i, _block.PCBqueue[i].deviceType, _block.PCBqueue[i].deviceNum);
                                 // 寻找阻塞队列中有没有还没有获得设备的进程，想办法分配了
                                 for (int j = 0; j < _block.num; j++)
@@ -456,6 +463,10 @@ namespace OS_Simulation
                                     // 将ready队列中的进程直接调入cpu执行
                                     _cpu.fromReadyToExecute(_ready, _execute); // 延后修改_execute.state,以便判断这个进程是不是才入执行
 
+                                    // 恢复cpu现场
+                                    _cpu.IR = _execute.PCBqueue[0].IR;
+                                    _cpu.PC = _execute.PCBqueue[0].PC;
+                                    _cpu.DR = _execute.PCBqueue[0].DR;
                                     // 设置执行进程的时间片
                                     _execute.PCBqueue[0].time = 0; // 已经运行的时间
                                    // time_now = TimeCount.Seconds;
@@ -591,58 +602,72 @@ namespace OS_Simulation
 
         #endregion
 
+        Form_File _file = new Form_File();
+
         // 创建进程1
         private void btn_createProcess1_Click(object sender, EventArgs e)
         {
-            string instruction1 = "!B3;x=0;x++;x--;x++;end;";
+            //string instruction = _file.instructions[0];
             //int num = 0;
-            _cpu.create(_free, _ready, label_storage, _storage, _cpu, instruction1);
+            _cpu.create(_free, _ready, label_storage, _storage, _cpu, _file.instructions[0]);
             
         }
 
         // 创建进程2
         private void btn_createProcess2_Click(object sender, EventArgs e)
         {
-            string instruction2 = "x=0;x++;x--;x++;x--;x++;end;";
+            string instruction = _file.instructions[1];
             //int num = 0;
-            _cpu.create(_free, _ready, label_storage, _storage, _cpu, instruction2);
-       
+            _cpu.create(_free, _ready, label_storage, _storage, _cpu, instruction);
+
         }
 
         // 创建进程3
         private void btn_createProcess3_Click(object sender, EventArgs e)
         {
-            string instruction3 = "x=0;x++;x++;x--;end;";
+            string instruction = _file.instructions[2];
+            //int num = 0;
+            _cpu.create(_free, _ready, label_storage, _storage, _cpu, instruction);
         }
 
         // 创建进程4
         private void btn_createProcess4_Click(object sender, EventArgs e)
         {
-            string instruction4 = "x=0;x++;x++;x--;end;";
+            string instruction = _file.instructions[3];
+            //int num = 0;
+            _cpu.create(_free, _ready, label_storage, _storage, _cpu, instruction);
         }
 
         // 创建进程5
         private void btn_createProcess5_Click(object sender, EventArgs e)
         {
-            string instruction5 = "x=0;x++;x++;x--;end;";
+            string instruction = _file.instructions[4];
+            //int num = 0;
+            _cpu.create(_free, _ready, label_storage, _storage, _cpu, instruction);
         }
 
         // 创建进程6
         private void btn_createProcess6_Click(object sender, EventArgs e)
         {
-            string instruction6 = "x=0;x++;x++;x--;end;";
+            string instruction = _file.instructions[5];
+            //int num = 0;
+            _cpu.create(_free, _ready, label_storage, _storage, _cpu, instruction);
         }
 
         // 创建进程7
         private void btn_createProcess7_Click(object sender, EventArgs e)
         {
-            string instruction7 = "x=0;x++;x++;x--;end;";
+            string instruction = _file.instructions[6];
+            //int num = 0;
+            _cpu.create(_free, _ready, label_storage, _storage, _cpu, instruction);
         }
 
         // 创建进程8
         private void btn_createProcess8_Click(object sender, EventArgs e)
         {
-            string instruction8 = "x=0;x++;x++;x--;end;";
+            string instruction = _file.instructions[7];
+            //int num = 0;
+            _cpu.create(_free, _ready, label_storage, _storage, _cpu, instruction);
         }
 
         
@@ -663,6 +688,12 @@ namespace OS_Simulation
         private void groupBox_timeRest_Enter(object sender, EventArgs e)
         {
 
+        }
+
+        private void FileSystem_Button_Click(object sender, EventArgs e)
+        {
+           
+            _file.Show();
         }
     }
 }

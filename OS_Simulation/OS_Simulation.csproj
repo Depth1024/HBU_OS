@@ -48,6 +48,31 @@
   <ItemGroup>
     <Compile Include="CPU.cs" />
     <Compile Include="Device.cs" />
+    <Compile Include="FileFunction.cs" />
+    <Compile Include="Form_File.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_File.Designer.cs">
+      <DependentUpon>Form_File.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form_CFile.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_CFile.designer.cs">
+      <DependentUpon>Form_CFile.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form_CMenu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_CMenu.designer.cs">
+      <DependentUpon>Form_CMenu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form_EFile.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_EFile.designer.cs">
+      <DependentUpon>Form_EFile.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form_main.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -57,6 +82,18 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Storage.cs" />
+    <EmbeddedResource Include="Form_File.resx">
+      <DependentUpon>Form_File.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_CFile.resx">
+      <DependentUpon>Form_CFile.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_CMenu.resx">
+      <DependentUpon>Form_CMenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_EFile.resx">
+      <DependentUpon>Form_EFile.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form_main.resx">
       <DependentUpon>Form_main.cs</DependentUpon>
     </EmbeddedResource>

@@ -7,3 +7,55 @@ D:\Github\HBU_OS\OS_Simulation\obj\Debug\OS_Simulation.csproj.GenerateResource.c
 D:\Github\HBU_OS\OS_Simulation\obj\Debug\OS_Simulation.exe
 D:\Github\HBU_OS\OS_Simulation\obj\Debug\OS_Simulation.pdb
 D:\Github\HBU_OS\OS_Simulation\obj\Debug\OS_Simulation.Form_main.resources
+C:\Users\25023\Desktop\操作系统改01\OS_Simulation\bin\Debug\OS_Simulation.exe.config
+C:\Users\25023\Desktop\操作系统改01\OS_Simulation\bin\Debug\OS_Simulation.exe
+C:\Users\25023\Desktop\操作系统改01\OS_Simulation\bin\Debug\OS_Simulation.pdb
+C:\Users\25023\Desktop\操作系统改01\OS_Simulation\obj\Debug\OS_Simulation.csprojAssemblyReference.cache
+C:\Users\25023\Desktop\操作系统改01\OS_Simulation\obj\Debug\OS_Simulation.Form1.resources
+C:\Users\25023\Desktop\操作系统改01\OS_Simulation\obj\Debug\OS_Simulation.Form_CFile.resources
+C:\Users\25023\Desktop\操作系统改01\OS_Simulation\obj\Debug\OS_Simulation.Form_CMenu.resources
+C:\Users\25023\Desktop\操作系统改01\OS_Simulation\obj\Debug\OS_Simulation.Form_EFile.resources
+C:\Users\25023\Desktop\操作系统改01\OS_Simulation\obj\Debug\OS_Simulation.Form_main.resources
+C:\Users\25023\Desktop\操作系统改01\OS_Simulation\obj\Debug\OS_Simulation.Properties.Resources.resources
+C:\Users\25023\Desktop\操作系统改01\OS_Simulation\obj\Debug\OS_Simulation.csproj.GenerateResource.cache
+C:\Users\25023\Desktop\操作系统改01\OS_Simulation\obj\Debug\OS_Simulation.exe
+C:\Users\25023\Desktop\操作系统改01\OS_Simulation\obj\Debug\OS_Simulation.pdb
+C:\Users\79458\Desktop\操作系统改01+文件\OS_Simulation\bin\Debug\OS_Simulation.exe.config
+C:\Users\79458\Desktop\操作系统改01+文件\OS_Simulation\bin\Debug\OS_Simulation.exe
+C:\Users\79458\Desktop\操作系统改01+文件\OS_Simulation\bin\Debug\OS_Simulation.pdb
+C:\Users\79458\Desktop\操作系统改01+文件\OS_Simulation\obj\Debug\OS_Simulation.csprojAssemblyReference.cache
+C:\Users\79458\Desktop\操作系统改01+文件\OS_Simulation\obj\Debug\OS_Simulation.Form_File.resources
+C:\Users\79458\Desktop\操作系统改01+文件\OS_Simulation\obj\Debug\OS_Simulation.Form_CFile.resources
+C:\Users\79458\Desktop\操作系统改01+文件\OS_Simulation\obj\Debug\OS_Simulation.Form_CMenu.resources
+C:\Users\79458\Desktop\操作系统改01+文件\OS_Simulation\obj\Debug\OS_Simulation.Form_EFile.resources
+C:\Users\79458\Desktop\操作系统改01+文件\OS_Simulation\obj\Debug\OS_Simulation.Form_main.resources
+C:\Users\79458\Desktop\操作系统改01+文件\OS_Simulation\obj\Debug\OS_Simulation.Properties.Resources.resources
+C:\Users\79458\Desktop\操作系统改01+文件\OS_Simulation\obj\Debug\OS_Simulation.csproj.GenerateResource.cache
+C:\Users\79458\Desktop\操作系统改01+文件\OS_Simulation\obj\Debug\OS_Simulation.exe
+C:\Users\79458\Desktop\操作系统改01+文件\OS_Simulation\obj\Debug\OS_Simulation.pdb
+C:\Users\25023\Desktop\操作\操作系统改01+文件\OS_Simulation\bin\Debug\OS_Simulation.exe.config
+C:\Users\25023\Desktop\操作\操作系统改01+文件\OS_Simulation\bin\Debug\OS_Simulation.exe
+C:\Users\25023\Desktop\操作\操作系统改01+文件\OS_Simulation\bin\Debug\OS_Simulation.pdb
+C:\Users\25023\Desktop\操作\操作系统改01+文件\OS_Simulation\obj\Debug\OS_Simulation.csprojAssemblyReference.cache
+C:\Users\25023\Desktop\操作\操作系统改01+文件\OS_Simulation\obj\Debug\OS_Simulation.Form_File.resources
+C:\Users\25023\Desktop\操作\操作系统改01+文件\OS_Simulation\obj\Debug\OS_Simulation.Form_CFile.resources
+C:\Users\25023\Desktop\操作\操作系统改01+文件\OS_Simulation\obj\Debug\OS_Simulation.Form_CMenu.resources
+C:\Users\25023\Desktop\操作\操作系统改01+文件\OS_Simulation\obj\Debug\OS_Simulation.Form_EFile.resources
+C:\Users\25023\Desktop\操作\操作系统改01+文件\OS_Simulation\obj\Debug\OS_Simulation.Form_main.resources
+C:\Users\25023\Desktop\操作\操作系统改01+文件\OS_Simulation\obj\Debug\OS_Simulation.Properties.Resources.resources
+C:\Users\25023\Desktop\操作\操作系统改01+文件\OS_Simulation\obj\Debug\OS_Simulation.csproj.GenerateResource.cache
+C:\Users\25023\Desktop\操作\操作系统改01+文件\OS_Simulation\obj\Debug\OS_Simulation.exe
+C:\Users\25023\Desktop\操作\操作系统改01+文件\OS_Simulation\obj\Debug\OS_Simulation.pdb
+C:\Users\79458\Documents\Tencent Files\794583971\FileRecv\操作\操作系统改01+文件\OS_Simulation\bin\Debug\OS_Simulation.exe.config
+C:\Users\79458\Documents\Tencent Files\794583971\FileRecv\操作\操作系统改01+文件\OS_Simulation\bin\Debug\OS_Simulation.exe
+C:\Users\79458\Documents\Tencent Files\794583971\FileRecv\操作\操作系统改01+文件\OS_Simulation\bin\Debug\OS_Simulation.pdb
+C:\Users\79458\Documents\Tencent Files\794583971\FileRecv\操作\操作系统改01+文件\OS_Simulation\obj\Debug\OS_Simulation.csprojAssemblyReference.cache
+C:\Users\79458\Documents\Tencent Files\794583971\FileRecv\操作\操作系统改01+文件\OS_Simulation\obj\Debug\OS_Simulation.Form_File.resources
+C:\Users\79458\Documents\Tencent Files\794583971\FileRecv\操作\操作系统改01+文件\OS_Simulation\obj\Debug\OS_Simulation.Form_CFile.resources
+C:\Users\79458\Documents\Tencent Files\794583971\FileRecv\操作\操作系统改01+文件\OS_Simulation\obj\Debug\OS_Simulation.Form_CMenu.resources
+C:\Users\79458\Documents\Tencent Files\794583971\FileRecv\操作\操作系统改01+文件\OS_Simulation\obj\Debug\OS_Simulation.Form_EFile.resources
+C:\Users\79458\Documents\Tencent Files\794583971\FileRecv\操作\操作系统改01+文件\OS_Simulation\obj\Debug\OS_Simulation.Form_main.resources
+C:\Users\79458\Documents\Tencent Files\794583971\FileRecv\操作\操作系统改01+文件\OS_Simulation\obj\Debug\OS_Simulation.Properties.Resources.resources
+C:\Users\79458\Documents\Tencent Files\794583971\FileRecv\操作\操作系统改01+文件\OS_Simulation\obj\Debug\OS_Simulation.csproj.GenerateResource.cache
+C:\Users\79458\Documents\Tencent Files\794583971\FileRecv\操作\操作系统改01+文件\OS_Simulation\obj\Debug\OS_Simulation.exe
+C:\Users\79458\Documents\Tencent Files\794583971\FileRecv\操作\操作系统改01+文件\OS_Simulation\obj\Debug\OS_Simulation.pdb
