@@ -43,7 +43,7 @@ namespace OS_Simulation
                         _device.deviceA[i].state = deviceState.working;
                         _device.deviceA[i].pcb_num = _block.PCBqueue[pcbNo].num;
                         _device.deviceA[i].name = _block.PCBqueue[pcbNo].name;
-                        _device.deviceA[i].time = _block.PCBqueue[pcbNo].IR[3] - 48;
+                        _device.deviceA[i].time = _block.PCBqueue[pcbNo].IR[2] - 48;
                         // 设置进程块
                         _block.PCBqueue[pcbNo].deviceType = 1;
                         _block.PCBqueue[pcbNo].deviceNum = i + 1;   // 第1~3个设备
@@ -66,7 +66,7 @@ namespace OS_Simulation
                         _device.deviceB[i].state = deviceState.working;
                         _device.deviceB[i].pcb_num = _block.PCBqueue[pcbNo].num;
                         _device.deviceB[i].name = _block.PCBqueue[pcbNo].name;
-                        _device.deviceB[i].time = _block.PCBqueue[pcbNo].IR[3] - 48;
+                        _device.deviceB[i].time = _block.PCBqueue[pcbNo].IR[2] - 48;
                         // 设置进程块
                         _block.PCBqueue[pcbNo].deviceType = 2;
                         _block.PCBqueue[pcbNo].deviceNum = i + 1;   // 第1~3个设备

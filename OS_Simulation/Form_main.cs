@@ -135,10 +135,6 @@ namespace OS_Simulation
                     _cpu.PSW = Interrupt.io;
             }else
             {
-               
-
-                
-               
                 // 如果这个进程是才进入执行状态的话
                 if (_execute.PCBqueue[0].state == ProcessState.ready)
                 {
