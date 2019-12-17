@@ -59,8 +59,10 @@ namespace OS_Simulation
         // 进程调度信息
         public ProcessState state; // 描述进程状态
         public int time; // 已用时间
+        // 设备信息
+        public int deviceType;  // 设备种类
+        public int deviceNum;   // 设备序号
 
-        
         //public int next;  // 表示在队列中的先后关系,存放下一个PCB的内部标识符
     }
 
@@ -83,7 +85,7 @@ namespace OS_Simulation
     {
         public int num = 0;// 阻塞队列中进程的数量
         public PCB[] PCBqueue = new PCB[9]; // 进程队列 
-       
+         
     }
     // 空白PCB队列
     public class Free
@@ -126,19 +128,15 @@ namespace OS_Simulation
                 //***********************************************************
                 PCBarray[i].name = "process" + i;
                 PCBarray[i].PSW = Interrupt.none;    // 无中断
-                PCBarray[i].IR = "";  // 无指令
+                PCBarray[i].IR = "null";  // 无指令
                 PCBarray[i].instructions = "null";
                 PCBarray[i].PC = 0;   // 指令地址置零
                 PCBarray[i].DR = 981212;   // x的值置一个比较特殊的值
                 //PCBarray[i].state = ProcessState.none;   // 初始化进程状态为  空闲
                 PCBarray[i].time = 0;  // 本进程已使用了0时间的处理机
 
-                // quenum与next置零，在队列中使用
-               
-               // PCBarray[i].next = 0;
-               
-               
-               
+                PCBarray[i].deviceType = 0;
+                PCBarray[i].deviceNum = 0;
             }
             // 初始化硬件
             PSW = Interrupt.none;
@@ -297,6 +295,7 @@ namespace OS_Simulation
         // 针对clock中断，将未执行完的进程链入ready队列队尾
         public void fromExecuteToReady(Ready _ready,Execute _execute)
         {
+            
             // 当前进程位于执行队列中,执行队列只有一个块
             _ready.PCBqueue[_ready.num] = _execute.PCBqueue[0];
             _ready.PCBqueue[_ready.num].state = ProcessState.ready; // 修改进程状态
@@ -392,13 +391,12 @@ namespace OS_Simulation
 
         #region 阻塞进程 Block
         // 进程的阻塞
-        public void block(int pcbNo,Execute _execute,Block _block,CPU _cpu)
+        public void block(Execute _execute,Block _block,CPU _cpu)
         {
             // 保存运行进程的CPU现场
-            PCBarray[pcbNo].PSW = _cpu.PSW;    // 无中断
-            PCBarray[pcbNo].IR = _cpu.IR;  // 无指令
-            PCBarray[pcbNo].PC = _cpu.PC;   // 指令地址置零
-            PCBarray[pcbNo].DR = _cpu.DR;   // x的值置零
+            _execute.PCBqueue[0].IR = _cpu.IR;
+            _execute.PCBqueue[0].PC = _cpu.PC;  
+            _execute.PCBqueue[0].DR = _cpu.DR;   
             
             // 将进程链入对应的阻塞队列，然后转向进程调度
             _cpu.blockPcbFromExecute( _block, _execute);

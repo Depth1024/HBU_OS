@@ -28,6 +28,8 @@ namespace OS_Simulation
         public CPU _cpu = new CPU();
         //实例化主存储器
         public Storage _storage = new Storage();
+        // 实例化设备
+        public Device _device = new Device();
         // 实例化三个队列
         public Block _block = new Block();
         public Execute _execute = new Execute();
@@ -121,31 +123,22 @@ namespace OS_Simulation
         public void RR()
         {
             // 判断执行队列
-            if(_execute.num == 0 )  // 如果进程已经执行完毕  或还没有进程在执行
+            if(_execute.num == 0 && _cpu.PSW != Interrupt.io)  // 如果进程已经执行完毕  或还没有进程在执行
             {
                     // 软中断
                     _cpu.PSW = Interrupt.end;
                     
             }
-            else if(_block.num > 0)
+            else if (_cpu.PSW == Interrupt.io)
             {
                     // 查看需要占用哪个设备用几秒
                     _cpu.PSW = Interrupt.io;
-            }
-            else
+            }else
             {
-                // 显示正在执行的进程名
-                this.executeName_label.Text = _execute.PCBqueue[0].name;
-                // 时间触发算法
-                while (time_now == TimeCount.Seconds)
-                {
-                    // 等时间
-                }
-                // 时间发生改变，立刻改时间
-                time_now = TimeCount.Seconds;
+               
 
-
-
+                
+               
                 // 如果这个进程是才进入执行状态的话
                 if (_execute.PCBqueue[0].state == ProcessState.ready)
                 {
@@ -162,9 +155,11 @@ namespace OS_Simulation
                 // 更改label_timeRest的显示
                 _cpu.TIME = 4 - _execute.PCBqueue[0].time;
                 this.label_timeRest.Text = _cpu.TIME.ToString();
-
-
                 
+                // 显示正在执行的进程名
+                this.executeName_label.Text = _execute.PCBqueue[0].name;
+
+
                 // 如果正在执行的进程的时间片到了4
                 if (_execute.PCBqueue[0].time == 4)
                 {
@@ -179,6 +174,146 @@ namespace OS_Simulation
                    
                 }
             }
+            #region 对block执行操作
+            // 对block队列执行操作
+            if (_block.num > 0)  // 如果有进程正在调用设备
+            {
+                for (int i = 0; i < _block.num; i++)
+                {
+                    if (_block.PCBqueue[i].deviceType == 1)  // A类设备
+                    {
+                        if (_block.PCBqueue[i].deviceNum == 1)  // A1
+                        {
+                            // 设备占用时间--
+                            _device.deviceA[0].time--;
+                            deviceA1state.Text = "空闲";
+                            ProcessnameA1.Text = "null";
+                            // 如果设备占用时间到，就回收一个
+                            if (_device.deviceA[0].time == 0)
+                            {
+                                _device.recoveryDevice(_cpu, _device, _ready, _block, i, _block.PCBqueue[i].deviceType, _block.PCBqueue[i].deviceNum);
+                                // 寻找阻塞队列中有没有还没有获得设备的进程，想办法分配了
+                                for (int j = 0; j < _block.num; j++)
+                                {
+                                    if (_block.PCBqueue[i].deviceType == 0)  // 如果这个进程还没有分配设备
+                                    {
+                                        int judge = _device.allocateDevice(_device, _block, j);
+                                        if (judge == 1)
+                                        {
+                                            break;
+                                        }
+                                    }
+
+                                }
+                            }
+                        }
+                        else if (_block.PCBqueue[i].deviceNum == 2)// A2
+                        {
+                            // 设备占用时间--
+                            _device.deviceA[1].time--;
+                            // 如果设备占用时间到，就回收一个
+                            if (_device.deviceA[1].time == 0)
+                            {
+                                _device.recoveryDevice(_cpu, _device, _ready, _block, i, _block.PCBqueue[i].deviceType, _block.PCBqueue[i].deviceNum);
+                                deviceA2state.Text = "空闲";
+                                ProcessnameA2.Text = "null";
+                                // 寻找阻塞队列中有没有还没有获得设备的进程，想办法分配了
+                                for (int j = 0; j < _block.num; j++)
+                                {
+                                    if (_block.PCBqueue[i].deviceType == 0)  // 如果这个进程还没有分配设备
+                                    {
+                                        int judge = _device.allocateDevice(_device, _block, j);
+                                        if (judge == 1)  // 如果分配成功了，就跳出分配环节
+                                        {
+                                            break;
+                                        }
+                                    }
+
+                                }
+                            }
+                        }
+                        else if (_block.PCBqueue[i].deviceNum == 3)// A3
+                        {
+                            // 设备占用时间--
+                            _device.deviceA[2].time--;
+                            // 如果设备占用时间到，就回收一个
+                            if (_device.deviceA[2].time == 0)
+                            {
+                                _device.recoveryDevice(_cpu, _device, _ready, _block, i, _block.PCBqueue[i].deviceType, _block.PCBqueue[i].deviceNum);
+                                deviceA3state.Text = "空闲";
+                                ProcessnameA3.Text = "null";
+                                // 寻找阻塞队列中有没有还没有获得设备的进程，想办法分配了
+                                for (int j = 0; j < _block.num; j++)
+                                {
+                                    if (_block.PCBqueue[i].deviceType == 0)  // 如果这个进程还没有分配设备
+                                    {
+                                        int judge = _device.allocateDevice(_device, _block, j);
+                                        if (judge == 1)  // 如果分配成功了，就跳出分配环节
+                                        {
+                                            break;
+                                        }
+                                    }
+
+                                }
+                            }
+                        }
+                    }
+                    else if (_block.PCBqueue[i].deviceType == 2)  // B类设备
+                    {
+                        if (_block.PCBqueue[i].deviceNum == 1)  // B1
+                        {
+                            // 设备占用时间--
+                            _device.deviceB[0].time--;
+                            // 如果设备占用时间到，就回收一个
+                            if (_device.deviceB[0].time == 0)
+                            {
+                                _device.recoveryDevice(_cpu, _device, _ready, _block, i, _block.PCBqueue[i].deviceType, _block.PCBqueue[i].deviceNum);
+                                deviceB1state.Text = "空闲";
+                                ProcessnameB1.Text = "null";
+                                // 寻找阻塞队列中有没有还没有获得设备的进程，想办法分配了
+                                for (int j = 0; j < _block.num; j++)
+                                {
+                                    if (_block.PCBqueue[i].deviceType == 0)  // 如果这个进程还没有分配设备
+                                    {
+                                        int judge = _device.allocateDevice(_device, _block, j);
+                                        if (judge == 1)
+                                        {
+                                            break;
+                                        }
+                                    }
+
+                                }
+                            }
+                        }
+                        else if (_block.PCBqueue[i].deviceNum == 2)// B2
+                        {
+                            // 设备占用时间--
+                            _device.deviceB[1].time--;
+                            // 如果设备占用时间到，就回收一个
+                            if (_device.deviceB[1].time == 0)
+                            {
+                                _device.recoveryDevice(_cpu, _device, _ready, _block, i, _block.PCBqueue[i].deviceType, _block.PCBqueue[i].deviceNum);
+                                deviceB2state.Text = "空闲";
+                                ProcessnameB2.Text = "null";
+                                // 寻找阻塞队列中有没有还没有获得设备的进程，想办法分配了
+                                for (int j = 0; j < _block.num; j++)
+                                {
+                                    if (_block.PCBqueue[i].deviceType == 0)  // 如果这个进程还没有分配设备
+                                    {
+                                        int judge = _device.allocateDevice(_device, _block, j);
+                                        if (judge == 1)  // 如果分配成功了，就跳出分配环节
+                                        {
+                                            break;
+                                        }
+                                    }
+
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            #endregion
         }
 
         // 核心函数 cpu
@@ -186,6 +321,14 @@ namespace OS_Simulation
         {
             while (true)
             {
+                // 时间触发算法
+                while (time_now == TimeCount.Seconds)
+                {
+                    // 等时间
+                }
+                // 时间发生改变，立刻改时间
+                time_now = TimeCount.Seconds;
+
                 // 判断中断
                 switch (_cpu.PSW)
                 {
@@ -209,6 +352,73 @@ namespace OS_Simulation
                         }
                     case Interrupt.io:    // 调用设备、io中断
                         {
+                            // 将进程链入阻塞队列
+                            _cpu.block(_execute, _block, _cpu);
+                            // 分配设备,注意：_block.num要-1，因为在进程调度时，_block.num++了
+                            int i = _device.allocateDevice(_device, _block, _block.num - 1);
+                            if (i == 1) // 分配成功
+                            {
+                                // 识别设备号，改变设备显示
+                                switch (_block.PCBqueue[_block.num - 1].deviceType)
+                                {
+                                    case 1:  // A
+                                        switch (_block.PCBqueue[_block.num - 1].deviceNum)
+                                        {
+                                            case 1:  // A1
+                                                deviceA1state.Text = "使用中";
+                                                ProcessnameA1.Text = _block.PCBqueue[_block.num - 1].name;
+                                                break;
+                                            case 2:  // A2
+                                                deviceA2state.Text = "使用中";
+                                                ProcessnameA2.Text = _block.PCBqueue[_block.num - 1].name;
+                                                break;
+                                            case 3:  // A3
+                                                deviceA3state.Text = "使用中";
+                                                ProcessnameA3.Text = _block.PCBqueue[_block.num - 1].name;
+                                                break;
+                                        }
+                                        break;
+                                    case 2:   // B
+                                        switch (_block.PCBqueue[_block.num - 1].deviceNum)
+                                        {
+                                            case 1:  // B1
+                                                deviceB1state.Text = "使用中";
+                                                ProcessnameB1.Text = _block.PCBqueue[_block.num - 1].name;
+                                                break;
+                                            case 2:  // B2
+                                                deviceB2state.Text = "使用中";
+                                                ProcessnameB2.Text = _block.PCBqueue[_block.num - 1].name;
+                                                break;
+                                        }
+                                        break;
+                                }
+                            }
+                            else
+                            {
+                                // 放在block队列中，等有设备停止使用再判断
+                            }
+
+                            if(_ready.num > 0)
+                            {
+                                // 如果ready队列中有进程在等待，则将ready的第一个进程调入执行
+                                _cpu.fromReadyToExecute(_ready, _execute);
+                                // 恢复cpu现场
+                                _cpu.PC = _execute.PCBqueue[0].PC;
+                                _cpu.DR = _execute.PCBqueue[0].DR;
+                                _cpu.IR = _execute.PCBqueue[0].IR;
+                                // 新进程调入，重置时间片
+                                //time_now = TimeCount.Seconds;
+                            }
+                            else
+                            {
+                                executeName_label.Text = "idle";
+                                label_timeRest.Text = "0";
+                                Label_executeInstruction.Text = "null";
+                                result_Label.Text = "null";
+                            }
+                            
+
+                            
                             // PSW归位
                             _cpu.PSW = Interrupt.none;
                             break;
@@ -224,9 +434,13 @@ namespace OS_Simulation
                                 if(_ready.num > 0)
                                 {
                                     _cpu.fromReadyToExecute(_ready, _execute); // 延后修改_execute.state,以便判断这个进程是不是才入执行
+                                    // 恢复cpu现场
+                                    _cpu.PC = _execute.PCBqueue[0].PC;
+                                    _cpu.DR = _execute.PCBqueue[0].DR;
+                                    _cpu.IR = _execute.PCBqueue[0].IR;
                                     //@@@@ 设置执行进程的时间片
                                     _execute.PCBqueue[0].time = 0;  // 已经运行的时间
-                                    time_now = TimeCount.Seconds;
+                                   // time_now = TimeCount.Seconds;
                                     //RR();
                                 }
                                 else
@@ -248,7 +462,7 @@ namespace OS_Simulation
 
                                     // 设置执行进程的时间片
                                     _execute.PCBqueue[0].time = 0; // 已经运行的时间
-                                    time_now = TimeCount.Seconds;
+                                   // time_now = TimeCount.Seconds;
                                 }
                             }
                            
@@ -263,6 +477,8 @@ namespace OS_Simulation
                         }
                 }
 
+
+                time_now = TimeCount.Seconds;
                 // 如果执行队列中有进程，且进程state为execute（不是刚执行的）
                 if (_execute.num == 1 && _execute.PCBqueue[0].state == ProcessState.execute)
                 {
@@ -276,9 +492,9 @@ namespace OS_Simulation
                         _cpu.PC++;
                     }
                     #endregion
-
                     // 显示正在执行的指令
                     Label_executeInstruction.Text = _cpu.IR;
+
 
                     // 开始读指令
                     for (int i = 0; i < 4; i++)
@@ -318,7 +534,8 @@ namespace OS_Simulation
                                 result_Label.Text = _cpu.DR.ToString();
                                 break;
                             case '!':
-                                // 将进程链入阻塞队列
+                                
+                                _cpu.PSW = Interrupt.io;
                                 break;
                             case 'e':
                                 // 如果执行到“end;”，就令_execute.num == 0,不改state,然后调用RR，进行进程调度
@@ -381,7 +598,7 @@ namespace OS_Simulation
         // 创建进程1
         private void btn_createProcess1_Click(object sender, EventArgs e)
         {
-            string instruction1 = "x=0;x++;x++;x--;x++;end;";
+            string instruction1 = "!B3;x=0;x++;x--;x++;end;";
             //int num = 0;
             _cpu.create(_free, _ready, label_storage, _storage, _cpu, instruction1);
             
@@ -443,6 +660,11 @@ namespace OS_Simulation
         }
 
         private void label4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void groupBox_timeRest_Enter(object sender, EventArgs e)
         {
 
         }

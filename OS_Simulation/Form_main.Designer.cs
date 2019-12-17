@@ -208,6 +208,7 @@
             this.groupBox_timeRest.TabIndex = 6;
             this.groupBox_timeRest.TabStop = false;
             this.groupBox_timeRest.Text = "剩余时间片";
+            this.groupBox_timeRest.Enter += new System.EventHandler(this.groupBox_timeRest_Enter);
             // 
             // label_timeRest
             // 
@@ -257,6 +258,8 @@
             this.deviceA3state.Name = "deviceA3state";
             this.deviceA3state.Size = new System.Drawing.Size(50, 20);
             this.deviceA3state.TabIndex = 3;
+            this.deviceA3state.Text = "空闲";
+            this.deviceA3state.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.deviceA3state.Click += new System.EventHandler(this.deviceA3state_Click);
             // 
             // deviceB2state
@@ -266,6 +269,8 @@
             this.deviceB2state.Name = "deviceB2state";
             this.deviceB2state.Size = new System.Drawing.Size(50, 20);
             this.deviceB2state.TabIndex = 3;
+            this.deviceB2state.Text = "空闲";
+            this.deviceB2state.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.deviceB2state.Click += new System.EventHandler(this.deviceA2state_Click);
             // 
             // deviceA2state
@@ -275,51 +280,63 @@
             this.deviceA2state.Name = "deviceA2state";
             this.deviceA2state.Size = new System.Drawing.Size(50, 20);
             this.deviceA2state.TabIndex = 3;
+            this.deviceA2state.Text = "空闲";
+            this.deviceA2state.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.deviceA2state.Click += new System.EventHandler(this.deviceA2state_Click);
             // 
             // ProcessnameA3
             // 
             this.ProcessnameA3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.ProcessnameA3.Location = new System.Drawing.Point(214, 133);
+            this.ProcessnameA3.Location = new System.Drawing.Point(204, 133);
             this.ProcessnameA3.Name = "ProcessnameA3";
-            this.ProcessnameA3.Size = new System.Drawing.Size(50, 20);
+            this.ProcessnameA3.Size = new System.Drawing.Size(79, 20);
             this.ProcessnameA3.TabIndex = 3;
+            this.ProcessnameA3.Text = "null";
+            this.ProcessnameA3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.ProcessnameA3.Click += new System.EventHandler(this.deviceA1state_Click);
             // 
             // ProcessnameB1
             // 
             this.ProcessnameB1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.ProcessnameB1.Location = new System.Drawing.Point(505, 54);
+            this.ProcessnameB1.Location = new System.Drawing.Point(495, 54);
             this.ProcessnameB1.Name = "ProcessnameB1";
-            this.ProcessnameB1.Size = new System.Drawing.Size(50, 20);
+            this.ProcessnameB1.Size = new System.Drawing.Size(79, 20);
             this.ProcessnameB1.TabIndex = 3;
+            this.ProcessnameB1.Text = "null";
+            this.ProcessnameB1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.ProcessnameB1.Click += new System.EventHandler(this.deviceA1state_Click);
             // 
             // ProcessnameA1
             // 
             this.ProcessnameA1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.ProcessnameA1.Location = new System.Drawing.Point(214, 54);
+            this.ProcessnameA1.Location = new System.Drawing.Point(205, 54);
             this.ProcessnameA1.Name = "ProcessnameA1";
-            this.ProcessnameA1.Size = new System.Drawing.Size(50, 20);
+            this.ProcessnameA1.Size = new System.Drawing.Size(78, 20);
             this.ProcessnameA1.TabIndex = 3;
+            this.ProcessnameA1.Text = "null";
+            this.ProcessnameA1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.ProcessnameA1.Click += new System.EventHandler(this.deviceA1state_Click);
             // 
             // ProcessnameB2
             // 
             this.ProcessnameB2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.ProcessnameB2.Location = new System.Drawing.Point(505, 93);
+            this.ProcessnameB2.Location = new System.Drawing.Point(495, 93);
             this.ProcessnameB2.Name = "ProcessnameB2";
-            this.ProcessnameB2.Size = new System.Drawing.Size(50, 20);
+            this.ProcessnameB2.Size = new System.Drawing.Size(79, 20);
             this.ProcessnameB2.TabIndex = 3;
+            this.ProcessnameB2.Text = "null";
+            this.ProcessnameB2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.ProcessnameB2.Click += new System.EventHandler(this.deviceA1state_Click);
             // 
             // ProcessnameA2
             // 
             this.ProcessnameA2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.ProcessnameA2.Location = new System.Drawing.Point(214, 93);
+            this.ProcessnameA2.Location = new System.Drawing.Point(204, 93);
             this.ProcessnameA2.Name = "ProcessnameA2";
-            this.ProcessnameA2.Size = new System.Drawing.Size(50, 20);
+            this.ProcessnameA2.Size = new System.Drawing.Size(77, 20);
             this.ProcessnameA2.TabIndex = 3;
+            this.ProcessnameA2.Text = "null";
+            this.ProcessnameA2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.ProcessnameA2.Click += new System.EventHandler(this.deviceA1state_Click);
             // 
             // deviceB1state
@@ -329,6 +346,8 @@
             this.deviceB1state.Name = "deviceB1state";
             this.deviceB1state.Size = new System.Drawing.Size(50, 20);
             this.deviceB1state.TabIndex = 3;
+            this.deviceB1state.Text = "空闲";
+            this.deviceB1state.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.deviceB1state.Click += new System.EventHandler(this.deviceA1state_Click);
             // 
             // deviceA1state
@@ -339,6 +358,7 @@
             this.deviceA1state.Name = "deviceA1state";
             this.deviceA1state.Size = new System.Drawing.Size(50, 20);
             this.deviceA1state.TabIndex = 3;
+            this.deviceA1state.Text = "空闲";
             this.deviceA1state.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.deviceA1state.Click += new System.EventHandler(this.deviceA1state_Click);
             // 
