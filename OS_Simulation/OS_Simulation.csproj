@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CPU.cs" />
+    <Compile Include="Device.cs" />
     <Compile Include="Form_main.cs">
       <SubType>Form</SubType>
     </Compile>

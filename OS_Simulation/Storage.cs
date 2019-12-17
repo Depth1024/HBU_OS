@@ -26,10 +26,11 @@ namespace OS_Simulation
             int length = instructions.Length;
             int need = length / 4;   // 4个字节为一个内存块
             int record = 0;  // 计算有多少连续的空余内存的变量
-            int min = 128;// 最小分区大小
+            int min_size = 128;// 最小分区大小
             int storage_num = 0;
             _storage.freeStorage[128] = 1; // 为内存空间设置一个封底
             
+            // 寻找可用内存
             for(int i = 0; i < 128; i++)
             {
                 if(_storage.freeStorage[i] == 0)
@@ -39,9 +40,9 @@ namespace OS_Simulation
                     // 如果这片内存区可用，计算它的大小
                     if(record >= need && _storage.freeStorage[i+1] == 1)
                     {
-                        if(min > record)
+                        if(min_size > record)
                         {
-                            min = record;
+                            min_size = record;
                             storage_num = i - record + 1; // 记录最小内存块的开始地址
                         }
                     }
@@ -52,18 +53,19 @@ namespace OS_Simulation
                     record = 0;
                 }
             }
-            if (record >= need)// 如果有连续need大小的空间
+            // 如果有连续need大小的空间
+            if (record >= need)
             {
                 
                 for(int i = storage_num;i < storage_num + need; i++)
                 {
                     _storage.freeStorage[i] = 1;  // 将内存块状态改为1
-                    pcbStorage[i] = pcb_num;
-                    // 把对应的内存块颜色变一下@@@@@@@@@@@@@@@@@@@@
+                    pcbStorage[i] = pcb_num;  // 记录这些内存块被哪个PCB占用了
+                    // 把对应的内存块颜色变一下
                     label_storage[i].BackColor = Color.Red;
                 }
             }
-            else
+            else  // 没有那么大的内存空间
             {
                 MessageBox.Show("无可用内存空间", "创建进程失败", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation);
             }
@@ -79,6 +81,7 @@ namespace OS_Simulation
                 if(_storage.pcbStorage[i] == pcb_num)
                 {
                     _storage.pcbStorage[i] = 0;  // 将这个进程占用的内存块清空
+                    _storage.freeStorage[i] = 0;
                     label_storage[i].BackColor = Color.Aquamarine;  // 内存块颜色更改
 
                 }
