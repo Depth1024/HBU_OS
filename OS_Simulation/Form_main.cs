@@ -30,8 +30,9 @@ namespace OS_Simulation
         public Storage _storage = new Storage();
         // 实例化设备
         public Device _device = new Device();
+        // 实例化文件
+        Form_File _file = new Form_File();
 
-       
         // 实例化三个队列
         public Block _block = new Block();
         public Execute _execute = new Execute();
@@ -48,8 +49,6 @@ namespace OS_Simulation
         public int tt = 4;
         public int time_now = 0;
 
-       
-        
 
 
         // 电源键
@@ -137,10 +136,6 @@ namespace OS_Simulation
                     _cpu.PSW = Interrupt.io;
             }else
             {
-               
-
-                
-               
                 // 如果这个进程是才进入执行状态的话
                 if (_execute.PCBqueue[0].state == ProcessState.ready)
                 {
@@ -192,9 +187,13 @@ namespace OS_Simulation
                             // 如果设备占用时间到，就回收一个
                             if (_device.deviceA[0].time == 0)
                             {
+                                
+                                _device.recoveryDevice(_cpu, _device, _ready, _block, i, _block.PCBqueue[i].deviceType, _block.PCBqueue[i].deviceNum);
                                 deviceA1state.Text = "空闲";
                                 ProcessnameA1.Text = "null";
-                                _device.recoveryDevice(_cpu, _device, _ready, _block, i, _block.PCBqueue[i].deviceType, _block.PCBqueue[i].deviceNum);
+                                //
+                                addItemsToReadyListview(_ready.PCBqueue[_ready.num - 1].name, _ready.PCBqueue[_ready.num - 1].num);
+                                deleteItemsFromBlockListview(i);
                                 // 寻找阻塞队列中有没有还没有获得设备的进程，想办法分配了
                                 for (int j = 0; j < _block.num; j++)
                                 {
@@ -220,6 +219,9 @@ namespace OS_Simulation
                                 _device.recoveryDevice(_cpu, _device, _ready, _block, i, _block.PCBqueue[i].deviceType, _block.PCBqueue[i].deviceNum);
                                 deviceA2state.Text = "空闲";
                                 ProcessnameA2.Text = "null";
+                                //
+                                addItemsToReadyListview(_ready.PCBqueue[_ready.num - 1].name, _ready.PCBqueue[_ready.num - 1].num);
+                                deleteItemsFromBlockListview(i);
                                 // 寻找阻塞队列中有没有还没有获得设备的进程，想办法分配了
                                 for (int j = 0; j < _block.num; j++)
                                 {
@@ -245,6 +247,9 @@ namespace OS_Simulation
                                 _device.recoveryDevice(_cpu, _device, _ready, _block, i, _block.PCBqueue[i].deviceType, _block.PCBqueue[i].deviceNum);
                                 deviceA3state.Text = "空闲";
                                 ProcessnameA3.Text = "null";
+                                //
+                                addItemsToReadyListview(_ready.PCBqueue[_ready.num - 1].name, _ready.PCBqueue[_ready.num - 1].num);
+                                deleteItemsFromBlockListview(i);
                                 // 寻找阻塞队列中有没有还没有获得设备的进程，想办法分配了
                                 for (int j = 0; j < _block.num; j++)
                                 {
@@ -273,6 +278,9 @@ namespace OS_Simulation
                                 _device.recoveryDevice(_cpu, _device, _ready, _block, i, _block.PCBqueue[i].deviceType, _block.PCBqueue[i].deviceNum);
                                 deviceB1state.Text = "空闲";
                                 ProcessnameB1.Text = "null";
+                                //
+                                addItemsToReadyListview(_ready.PCBqueue[_ready.num - 1].name, _ready.PCBqueue[_ready.num - 1].num);
+                                deleteItemsFromBlockListview(i);
                                 // 寻找阻塞队列中有没有还没有获得设备的进程，想办法分配了
                                 for (int j = 0; j < _block.num; j++)
                                 {
@@ -298,6 +306,9 @@ namespace OS_Simulation
                                 _device.recoveryDevice(_cpu, _device, _ready, _block, i, _block.PCBqueue[i].deviceType, _block.PCBqueue[i].deviceNum);
                                 deviceB2state.Text = "空闲";
                                 ProcessnameB2.Text = "null";
+                                //
+                                addItemsToReadyListview(_ready.PCBqueue[_ready.num - 1].name, _ready.PCBqueue[_ready.num - 1].num);
+                                deleteItemsFromBlockListview(i);
                                 // 寻找阻塞队列中有没有还没有获得设备的进程，想办法分配了
                                 for (int j = 0; j < _block.num; j++)
                                 {
@@ -357,6 +368,7 @@ namespace OS_Simulation
                         {
                             // 将进程链入阻塞队列
                             _cpu.block(_execute, _block, _cpu);
+                            addItemsToBlockListview(_block.PCBqueue[_block.num - 1].name, _block.PCBqueue[_block.num - 1].num);
                             // 分配设备,注意：_block.num要-1，因为在进程调度时，_block.num++了
                             int i = _device.allocateDevice(_device, _block, _block.num - 1);
                             if (i == 1) // 分配成功
@@ -405,6 +417,8 @@ namespace OS_Simulation
                             {
                                 // 如果ready队列中有进程在等待，则将ready的第一个进程调入执行
                                 _cpu.fromReadyToExecute(_ready, _execute);
+                                // 将该pcb从ready的listview中删除
+                                deleteItemsFromReadyListview(0);
                                 // 恢复cpu现场
                                 _cpu.PC = _execute.PCBqueue[0].PC;
                                 _cpu.DR = _execute.PCBqueue[0].DR;
@@ -436,6 +450,8 @@ namespace OS_Simulation
                                 // 如果ready队列中有就绪进程，将ready队列中的进程直接调入cpu执行
                                 if(_ready.num > 0)
                                 {
+                                    // 将该pcb从ready的listview中删除
+                                    deleteItemsFromReadyListview(0);
                                     _cpu.fromReadyToExecute(_ready, _execute); // 延后修改_execute.state,以便判断这个进程是不是才入执行
                                     // 恢复cpu现场
                                     _cpu.PC = _execute.PCBqueue[0].PC;
@@ -460,9 +476,10 @@ namespace OS_Simulation
                                 // 如果有就绪进程，就执行它
                                 if (_ready.num > 0)
                                 {
+                                    // 将该pcb从ready的listview中删除
+                                    deleteItemsFromReadyListview(0);
                                     // 将ready队列中的进程直接调入cpu执行
-                                    _cpu.fromReadyToExecute(_ready, _execute); // 延后修改_execute.state,以便判断这个进程是不是才入执行
-
+                                    _cpu.fromReadyToExecute(_ready, _execute); // 延后修改_execute.state,以便判断这个进程是不是才入执行  
                                     // 恢复cpu现场
                                     _cpu.IR = _execute.PCBqueue[0].IR;
                                     _cpu.PC = _execute.PCBqueue[0].PC;
@@ -602,14 +619,58 @@ namespace OS_Simulation
 
         #endregion
 
-        Form_File _file = new Form_File();
+        public int listViewReadyNum = 0;
+        public int listViewBlockNum = 0;
+
+       // listView 在就绪队列中添加项的方法
+       public void addItemsToReadyListview(string pcb_name,int pcb_num)
+        {
+            ListViewItem itemReady = new ListViewItem(pcb_num.ToString());
+            itemReady.SubItems.Add(pcb_name);
+            listView_ready.Items.Add(itemReady);
+            listViewReadyNum++;
+        }
+        // listView 在就绪队列中删除项的方法
+        public void deleteItemsFromReadyListview(int itemNo)  // 输入pcb在listview中的位置
+        {
+            // listView_ready.SelectedItems[itemNo].Remove();
+            listView_ready.Items.RemoveAt(itemNo);
+            
+            listViewReadyNum--;
+        }
+        // listView 在阻塞队列中删除项的方法
+        public void addItemsToBlockListview(string pcb_name,int pcb_num)
+        {
+            ListViewItem itemBlock = new ListViewItem(pcb_num.ToString());
+            itemBlock.SubItems.Add(pcb_name);
+            listView_block.Items.Add(itemBlock);
+            listViewBlockNum++;
+        }
+        // listView 在阻塞队列中删除项的方法
+        public void deleteItemsFromBlockListview(int itemNo)  // 输入pcb在listview中的位置
+        {
+            // listView_ready.SelectedItems[itemNo].Remove();
+            listView_block.Items.RemoveAt(itemNo);
+
+            listViewBlockNum--;
+        }
 
         // 创建进程1
         private void btn_createProcess1_Click(object sender, EventArgs e)
         {
-            //string instruction = _file.instructions[0];
+            string instruction = _file.instructions[0];
             //int num = 0;
-            _cpu.create(_free, _ready, label_storage, _storage, _cpu, _file.instructions[0]);
+            if (instruction == "null")
+            {
+                MessageBox.Show("请先从文件中选取执行文件", "创建进程失败", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation);
+            }
+            else
+            {
+                _cpu.create(_free, _ready, label_storage, _storage, _cpu, instruction);
+
+                addItemsToReadyListview(_ready.PCBqueue[_ready.num - 1].name, _ready.PCBqueue[_ready.num - 1].num);
+                
+            }
             
         }
 
@@ -617,57 +678,117 @@ namespace OS_Simulation
         private void btn_createProcess2_Click(object sender, EventArgs e)
         {
             string instruction = _file.instructions[1];
-            //int num = 0;
-            _cpu.create(_free, _ready, label_storage, _storage, _cpu, instruction);
-
+            if (instruction == "null")
+            {
+                MessageBox.Show("请先从文件中选取执行文件", "创建进程失败", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation);
+            }
+            else
+            {
+                _cpu.create(_free, _ready, label_storage, _storage, _cpu, instruction);
+                addItemsToReadyListview(_ready.PCBqueue[_ready.num - 1].name, _ready.PCBqueue[_ready.num - 1].num);
+                
+            }
         }
 
         // 创建进程3
         private void btn_createProcess3_Click(object sender, EventArgs e)
         {
             string instruction = _file.instructions[2];
-            //int num = 0;
-            _cpu.create(_free, _ready, label_storage, _storage, _cpu, instruction);
+            if (instruction == "null")
+            {
+                MessageBox.Show("请先从文件中选取执行文件", "创建进程失败", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation);
+            }
+            else
+            {
+                _cpu.create(_free, _ready, label_storage, _storage, _cpu, instruction);
+                addItemsToReadyListview(_ready.PCBqueue[_ready.num - 1].name, _ready.PCBqueue[_ready.num - 1].num);
+               
+            }
         }
 
         // 创建进程4
         private void btn_createProcess4_Click(object sender, EventArgs e)
         {
             string instruction = _file.instructions[3];
-            //int num = 0;
-            _cpu.create(_free, _ready, label_storage, _storage, _cpu, instruction);
+            if (instruction == "null")
+            {
+                MessageBox.Show("请先从文件中选取执行文件", "创建进程失败", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation);
+            }
+            else
+            {
+                _cpu.create(_free, _ready, label_storage, _storage, _cpu, instruction);
+                addItemsToReadyListview(_ready.PCBqueue[_ready.num - 1].name, _ready.PCBqueue[_ready.num - 1].num);
+             
+            }
+            
         }
 
         // 创建进程5
         private void btn_createProcess5_Click(object sender, EventArgs e)
         {
             string instruction = _file.instructions[4];
-            //int num = 0;
-            _cpu.create(_free, _ready, label_storage, _storage, _cpu, instruction);
+            if (instruction == "null")
+            {
+                MessageBox.Show("请先从文件中选取执行文件", "创建进程失败", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation);
+            }
+            else
+            {
+                _cpu.create(_free, _ready, label_storage, _storage, _cpu, instruction);
+                addItemsToReadyListview(_ready.PCBqueue[_ready.num - 1].name, _ready.PCBqueue[_ready.num - 1].num);
+
+            }
+            
         }
 
         // 创建进程6
         private void btn_createProcess6_Click(object sender, EventArgs e)
         {
             string instruction = _file.instructions[5];
-            //int num = 0;
-            _cpu.create(_free, _ready, label_storage, _storage, _cpu, instruction);
+            if (instruction == "null")
+            {
+                MessageBox.Show("请先从文件中选取执行文件", "创建进程失败", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation);
+            }
+            else
+            {
+                _cpu.create(_free, _ready, label_storage, _storage, _cpu, instruction);
+                addItemsToReadyListview(_ready.PCBqueue[_ready.num - 1].name, _ready.PCBqueue[_ready.num - 1].num);
+             
+            }
+           
         }
 
         // 创建进程7
         private void btn_createProcess7_Click(object sender, EventArgs e)
         {
             string instruction = _file.instructions[6];
-            //int num = 0;
-            _cpu.create(_free, _ready, label_storage, _storage, _cpu, instruction);
+            if (instruction == "null")
+            {
+                MessageBox.Show("请先从文件中选取执行文件", "创建进程失败", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation);
+            }
+            else
+            {
+                _cpu.create(_free, _ready, label_storage, _storage, _cpu, instruction);
+                addItemsToReadyListview(_ready.PCBqueue[_ready.num - 1].name, _ready.PCBqueue[_ready.num - 1].num);
+     
+            }
+            
         }
 
         // 创建进程8
         private void btn_createProcess8_Click(object sender, EventArgs e)
         {
             string instruction = _file.instructions[7];
-            //int num = 0;
-            _cpu.create(_free, _ready, label_storage, _storage, _cpu, instruction);
+            if (instruction == "null")
+            {
+                MessageBox.Show("请先从文件中选取执行文件", "创建进程失败", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation);
+            }
+            else
+            {
+                _cpu.create(_free, _ready, label_storage, _storage, _cpu, instruction);
+                addItemsToReadyListview(_ready.PCBqueue[_ready.num - 1].name, _ready.PCBqueue[_ready.num - 1].num);
+
+            }
+            
         }
 
         

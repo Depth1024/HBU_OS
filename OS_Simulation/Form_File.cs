@@ -587,57 +587,7 @@ namespace OS_Simulation
             }
         }
 
-        private void 执行ToolStripMenuItem_Click_1(object sender, EventArgs e)
-        {
-            OS_Simulation.FileFunction newfile = new OS_Simulation.FileFunction();
-            string pathname = newfile.GetPathname(treeView1.SelectedNode.FullPath);
-            string[] pnames = pathname.Split(new char[] { '\\', '.' });
-            string harddisk = "";
-            if (pnames[0] == "c:" || pnames[0] == "C:")
-            {
-                harddisk = "disk1.txt";
-            }
-
-            if (pnames[0] == "d:" || pnames[0] == "D:")
-            {
-                harddisk = "disk2.txt";
-            }
-
-            if (pathname.Length == 2)   //在本地C盘和D盘上编辑
-            {
-                return;
-            }
-
-            string halfpathname = pathname.Remove(pathname.Length - 6);
-            char attribute = Convert.ToChar(pnames[pnames.Length - 1]);
-            int disknum;
-            UTF8Encoding utf = new UTF8Encoding();
-            byte[] name = utf.GetBytes(pnames[pnames.Length - 2]);
-            if (pnames.Length == 3)   //例c:\aaa.t
-            {
-                disknum = 3;
-            }
-            else
-            {
-                disknum = newfile.Search(halfpathname, harddisk);
-            }
-            int item = newfile.FindItem(disknum, name, attribute, harddisk)[0];
-            int address = newfile.FindItem(disknum, name, attribute, harddisk)[1];
-            buffer = newfile.ReadFCB(disknum, item, harddisk);       //获取文件的FCB信息
-            int[] dnums = newfile.FindDiskNumber(buffer.Address, harddisk);  //找到文件占用的盘块返回整型数组
-            FileStream Disk = new FileStream(harddisk, FileMode.Open);
-            byte[] content = new byte[64 * dnums.Length];
-            for (int i = 0; i < dnums.Length; i++)
-            {
-                Disk.Seek(64 * (dnums[i] - 1), SeekOrigin.Begin);
-                Disk.Read(content, 64 * i, 64);
-            }
-            Disk.Close();
-            filecontent = utf.GetString(content);
-            int a = filecontent.IndexOf('\0', 0);
-            filecontent = filecontent.Substring(0, a);
-
-        }
+       
 
         private void delFileToolStripMenuItem_Click_1(object sender, EventArgs e)
         {

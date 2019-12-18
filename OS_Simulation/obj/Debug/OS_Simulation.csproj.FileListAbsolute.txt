@@ -59,3 +59,7 @@ C:\Users\79458\Documents\Tencent Files\794583971\FileRecv\操作\操作系统改
 C:\Users\79458\Documents\Tencent Files\794583971\FileRecv\操作\操作系统改01+文件\OS_Simulation\obj\Debug\OS_Simulation.csproj.GenerateResource.cache
 C:\Users\79458\Documents\Tencent Files\794583971\FileRecv\操作\操作系统改01+文件\OS_Simulation\obj\Debug\OS_Simulation.exe
 C:\Users\79458\Documents\Tencent Files\794583971\FileRecv\操作\操作系统改01+文件\OS_Simulation\obj\Debug\OS_Simulation.pdb
+D:\Github\HBU_OS\OS_Simulation\obj\Debug\OS_Simulation.Form_File.resources
+D:\Github\HBU_OS\OS_Simulation\obj\Debug\OS_Simulation.Form_CFile.resources
+D:\Github\HBU_OS\OS_Simulation\obj\Debug\OS_Simulation.Form_CMenu.resources
+D:\Github\HBU_OS\OS_Simulation\obj\Debug\OS_Simulation.Form_EFile.resources

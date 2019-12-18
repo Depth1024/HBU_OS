@@ -77,13 +77,13 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.SystmTimerLabel = new System.Windows.Forms.Label();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.listView1 = new System.Windows.Forms.ListView();
-            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.listView_ready = new System.Windows.Forms.ListView();
+            this.readyName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.readyNum = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.groupBox6 = new System.Windows.Forms.GroupBox();
-            this.listView2 = new System.Windows.Forms.ListView();
-            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.listView_block = new System.Windows.Forms.ListView();
+            this.blockName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.blockNum = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.FileSystem_Button = new System.Windows.Forms.Button();
             this.groupBox_power.SuspendLayout();
             this.groupBox_result.SuspendLayout();
@@ -100,11 +100,11 @@
             // groupBox_power
             // 
             this.groupBox_power.Controls.Add(this.button_power);
-            this.groupBox_power.Location = new System.Drawing.Point(820, 10);
-            this.groupBox_power.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox_power.Location = new System.Drawing.Point(1093, 12);
+            this.groupBox_power.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBox_power.Name = "groupBox_power";
-            this.groupBox_power.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.groupBox_power.Size = new System.Drawing.Size(71, 51);
+            this.groupBox_power.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.groupBox_power.Size = new System.Drawing.Size(95, 64);
             this.groupBox_power.TabIndex = 0;
             this.groupBox_power.TabStop = false;
             this.groupBox_power.Text = "电源";
@@ -113,10 +113,10 @@
             // 
             this.button_power.BackColor = System.Drawing.Color.Aquamarine;
             this.button_power.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.button_power.Location = new System.Drawing.Point(4, 11);
-            this.button_power.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button_power.Location = new System.Drawing.Point(5, 14);
+            this.button_power.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button_power.Name = "button_power";
-            this.button_power.Size = new System.Drawing.Size(62, 35);
+            this.button_power.Size = new System.Drawing.Size(83, 44);
             this.button_power.TabIndex = 0;
             this.button_power.Text = "开机";
             this.button_power.UseVisualStyleBackColor = false;
@@ -124,11 +124,11 @@
             // 
             // groupBox_storage
             // 
-            this.groupBox_storage.Location = new System.Drawing.Point(626, 78);
-            this.groupBox_storage.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox_storage.Location = new System.Drawing.Point(835, 98);
+            this.groupBox_storage.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBox_storage.Name = "groupBox_storage";
-            this.groupBox_storage.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.groupBox_storage.Size = new System.Drawing.Size(253, 353);
+            this.groupBox_storage.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.groupBox_storage.Size = new System.Drawing.Size(337, 441);
             this.groupBox_storage.TabIndex = 1;
             this.groupBox_storage.TabStop = false;
             this.groupBox_storage.Text = "内存占用情况";
@@ -140,11 +140,11 @@
             this.groupBox_result.Controls.Add(this.groupBox3);
             this.groupBox_result.Controls.Add(this.groupBox2);
             this.groupBox_result.Controls.Add(this.groupBox_timeRest);
-            this.groupBox_result.Location = new System.Drawing.Point(9, 10);
-            this.groupBox_result.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox_result.Location = new System.Drawing.Point(12, 12);
+            this.groupBox_result.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBox_result.Name = "groupBox_result";
-            this.groupBox_result.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.groupBox_result.Size = new System.Drawing.Size(255, 135);
+            this.groupBox_result.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.groupBox_result.Size = new System.Drawing.Size(340, 169);
             this.groupBox_result.TabIndex = 2;
             this.groupBox_result.TabStop = false;
             this.groupBox_result.Text = "运行结果显示";
@@ -153,11 +153,11 @@
             // groupBox4
             // 
             this.groupBox4.Controls.Add(this.result_Label);
-            this.groupBox4.Location = new System.Drawing.Point(147, 81);
-            this.groupBox4.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox4.Location = new System.Drawing.Point(196, 101);
+            this.groupBox4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.groupBox4.Size = new System.Drawing.Size(96, 42);
+            this.groupBox4.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.groupBox4.Size = new System.Drawing.Size(128, 52);
             this.groupBox4.TabIndex = 7;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "中间结果";
@@ -165,21 +165,20 @@
             // result_Label
             // 
             this.result_Label.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.result_Label.Location = new System.Drawing.Point(13, 17);
-            this.result_Label.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.result_Label.Location = new System.Drawing.Point(17, 21);
             this.result_Label.Name = "result_Label";
-            this.result_Label.Size = new System.Drawing.Size(75, 18);
+            this.result_Label.Size = new System.Drawing.Size(100, 22);
             this.result_Label.TabIndex = 0;
             this.result_Label.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.Label_executeInstruction);
-            this.groupBox3.Location = new System.Drawing.Point(147, 26);
-            this.groupBox3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox3.Location = new System.Drawing.Point(196, 32);
+            this.groupBox3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.groupBox3.Size = new System.Drawing.Size(96, 42);
+            this.groupBox3.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.groupBox3.Size = new System.Drawing.Size(128, 52);
             this.groupBox3.TabIndex = 7;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "正在执行指令";
@@ -187,21 +186,20 @@
             // Label_executeInstruction
             // 
             this.Label_executeInstruction.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.Label_executeInstruction.Location = new System.Drawing.Point(13, 17);
-            this.Label_executeInstruction.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.Label_executeInstruction.Location = new System.Drawing.Point(17, 21);
             this.Label_executeInstruction.Name = "Label_executeInstruction";
-            this.Label_executeInstruction.Size = new System.Drawing.Size(75, 18);
+            this.Label_executeInstruction.Size = new System.Drawing.Size(100, 22);
             this.Label_executeInstruction.TabIndex = 0;
             this.Label_executeInstruction.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.executeName_label);
-            this.groupBox2.Location = new System.Drawing.Point(13, 81);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox2.Location = new System.Drawing.Point(17, 101);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.groupBox2.Size = new System.Drawing.Size(103, 42);
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.groupBox2.Size = new System.Drawing.Size(137, 52);
             this.groupBox2.TabIndex = 7;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "正在执行进程";
@@ -209,21 +207,20 @@
             // executeName_label
             // 
             this.executeName_label.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.executeName_label.Location = new System.Drawing.Point(16, 17);
-            this.executeName_label.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.executeName_label.Location = new System.Drawing.Point(21, 21);
             this.executeName_label.Name = "executeName_label";
-            this.executeName_label.Size = new System.Drawing.Size(75, 18);
+            this.executeName_label.Size = new System.Drawing.Size(100, 22);
             this.executeName_label.TabIndex = 0;
             this.executeName_label.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // groupBox_timeRest
             // 
             this.groupBox_timeRest.Controls.Add(this.label_timeRest);
-            this.groupBox_timeRest.Location = new System.Drawing.Point(13, 26);
-            this.groupBox_timeRest.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox_timeRest.Location = new System.Drawing.Point(17, 32);
+            this.groupBox_timeRest.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBox_timeRest.Name = "groupBox_timeRest";
-            this.groupBox_timeRest.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.groupBox_timeRest.Size = new System.Drawing.Size(103, 42);
+            this.groupBox_timeRest.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.groupBox_timeRest.Size = new System.Drawing.Size(137, 52);
             this.groupBox_timeRest.TabIndex = 6;
             this.groupBox_timeRest.TabStop = false;
             this.groupBox_timeRest.Text = "剩余时间片";
@@ -232,10 +229,9 @@
             // label_timeRest
             // 
             this.label_timeRest.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label_timeRest.Location = new System.Drawing.Point(16, 17);
-            this.label_timeRest.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label_timeRest.Location = new System.Drawing.Point(21, 21);
             this.label_timeRest.Name = "label_timeRest";
-            this.label_timeRest.Size = new System.Drawing.Size(75, 18);
+            this.label_timeRest.Size = new System.Drawing.Size(100, 22);
             this.label_timeRest.TabIndex = 0;
             this.label_timeRest.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -263,11 +259,11 @@
             this.groupBox_device.Controls.Add(this.deviceB1);
             this.groupBox_device.Controls.Add(this.deviceA2);
             this.groupBox_device.Controls.Add(this.deviceA1);
-            this.groupBox_device.Location = new System.Drawing.Point(436, 460);
-            this.groupBox_device.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox_device.Location = new System.Drawing.Point(581, 575);
+            this.groupBox_device.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBox_device.Name = "groupBox_device";
-            this.groupBox_device.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.groupBox_device.Size = new System.Drawing.Size(442, 142);
+            this.groupBox_device.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.groupBox_device.Size = new System.Drawing.Size(589, 178);
             this.groupBox_device.TabIndex = 3;
             this.groupBox_device.TabStop = false;
             this.groupBox_device.Text = "设备状态";
@@ -276,10 +272,9 @@
             // deviceA3state
             // 
             this.deviceA3state.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.deviceA3state.Location = new System.Drawing.Point(90, 106);
-            this.deviceA3state.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.deviceA3state.Location = new System.Drawing.Point(120, 132);
             this.deviceA3state.Name = "deviceA3state";
-            this.deviceA3state.Size = new System.Drawing.Size(38, 16);
+            this.deviceA3state.Size = new System.Drawing.Size(51, 20);
             this.deviceA3state.TabIndex = 3;
             this.deviceA3state.Text = "空闲";
             this.deviceA3state.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -288,10 +283,9 @@
             // deviceB2state
             // 
             this.deviceB2state.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.deviceB2state.Location = new System.Drawing.Point(308, 74);
-            this.deviceB2state.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.deviceB2state.Location = new System.Drawing.Point(411, 92);
             this.deviceB2state.Name = "deviceB2state";
-            this.deviceB2state.Size = new System.Drawing.Size(38, 16);
+            this.deviceB2state.Size = new System.Drawing.Size(51, 20);
             this.deviceB2state.TabIndex = 3;
             this.deviceB2state.Text = "空闲";
             this.deviceB2state.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -300,10 +294,9 @@
             // deviceA2state
             // 
             this.deviceA2state.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.deviceA2state.Location = new System.Drawing.Point(90, 74);
-            this.deviceA2state.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.deviceA2state.Location = new System.Drawing.Point(120, 92);
             this.deviceA2state.Name = "deviceA2state";
-            this.deviceA2state.Size = new System.Drawing.Size(38, 16);
+            this.deviceA2state.Size = new System.Drawing.Size(51, 20);
             this.deviceA2state.TabIndex = 3;
             this.deviceA2state.Text = "空闲";
             this.deviceA2state.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -312,10 +305,9 @@
             // ProcessnameA3
             // 
             this.ProcessnameA3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.ProcessnameA3.Location = new System.Drawing.Point(153, 106);
-            this.ProcessnameA3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.ProcessnameA3.Location = new System.Drawing.Point(204, 132);
             this.ProcessnameA3.Name = "ProcessnameA3";
-            this.ProcessnameA3.Size = new System.Drawing.Size(59, 16);
+            this.ProcessnameA3.Size = new System.Drawing.Size(79, 20);
             this.ProcessnameA3.TabIndex = 3;
             this.ProcessnameA3.Text = "null";
             this.ProcessnameA3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -324,10 +316,9 @@
             // ProcessnameB1
             // 
             this.ProcessnameB1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.ProcessnameB1.Location = new System.Drawing.Point(371, 43);
-            this.ProcessnameB1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.ProcessnameB1.Location = new System.Drawing.Point(495, 54);
             this.ProcessnameB1.Name = "ProcessnameB1";
-            this.ProcessnameB1.Size = new System.Drawing.Size(59, 16);
+            this.ProcessnameB1.Size = new System.Drawing.Size(79, 20);
             this.ProcessnameB1.TabIndex = 3;
             this.ProcessnameB1.Text = "null";
             this.ProcessnameB1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -336,10 +327,9 @@
             // ProcessnameA1
             // 
             this.ProcessnameA1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.ProcessnameA1.Location = new System.Drawing.Point(154, 43);
-            this.ProcessnameA1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.ProcessnameA1.Location = new System.Drawing.Point(205, 54);
             this.ProcessnameA1.Name = "ProcessnameA1";
-            this.ProcessnameA1.Size = new System.Drawing.Size(58, 16);
+            this.ProcessnameA1.Size = new System.Drawing.Size(77, 20);
             this.ProcessnameA1.TabIndex = 3;
             this.ProcessnameA1.Text = "null";
             this.ProcessnameA1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -348,10 +338,9 @@
             // ProcessnameB2
             // 
             this.ProcessnameB2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.ProcessnameB2.Location = new System.Drawing.Point(371, 74);
-            this.ProcessnameB2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.ProcessnameB2.Location = new System.Drawing.Point(495, 92);
             this.ProcessnameB2.Name = "ProcessnameB2";
-            this.ProcessnameB2.Size = new System.Drawing.Size(59, 16);
+            this.ProcessnameB2.Size = new System.Drawing.Size(79, 20);
             this.ProcessnameB2.TabIndex = 3;
             this.ProcessnameB2.Text = "null";
             this.ProcessnameB2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -360,10 +349,9 @@
             // ProcessnameA2
             // 
             this.ProcessnameA2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.ProcessnameA2.Location = new System.Drawing.Point(153, 74);
-            this.ProcessnameA2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.ProcessnameA2.Location = new System.Drawing.Point(204, 92);
             this.ProcessnameA2.Name = "ProcessnameA2";
-            this.ProcessnameA2.Size = new System.Drawing.Size(58, 16);
+            this.ProcessnameA2.Size = new System.Drawing.Size(77, 20);
             this.ProcessnameA2.TabIndex = 3;
             this.ProcessnameA2.Text = "null";
             this.ProcessnameA2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -372,10 +360,9 @@
             // deviceB1state
             // 
             this.deviceB1state.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.deviceB1state.Location = new System.Drawing.Point(308, 43);
-            this.deviceB1state.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.deviceB1state.Location = new System.Drawing.Point(411, 54);
             this.deviceB1state.Name = "deviceB1state";
-            this.deviceB1state.Size = new System.Drawing.Size(38, 16);
+            this.deviceB1state.Size = new System.Drawing.Size(51, 20);
             this.deviceB1state.TabIndex = 3;
             this.deviceB1state.Text = "空闲";
             this.deviceB1state.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -385,10 +372,9 @@
             // 
             this.deviceA1state.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.deviceA1state.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.deviceA1state.Location = new System.Drawing.Point(90, 43);
-            this.deviceA1state.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.deviceA1state.Location = new System.Drawing.Point(120, 54);
             this.deviceA1state.Name = "deviceA1state";
-            this.deviceA1state.Size = new System.Drawing.Size(38, 16);
+            this.deviceA1state.Size = new System.Drawing.Size(51, 20);
             this.deviceA1state.TabIndex = 3;
             this.deviceA1state.Text = "空闲";
             this.deviceA1state.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -397,50 +383,45 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(369, 17);
-            this.label9.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label9.Location = new System.Drawing.Point(492, 21);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(65, 12);
+            this.label9.Size = new System.Drawing.Size(82, 15);
             this.label9.TabIndex = 2;
             this.label9.Text = "占用进程名";
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(301, 17);
-            this.label8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label8.Location = new System.Drawing.Point(401, 21);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(53, 12);
+            this.label8.Size = new System.Drawing.Size(67, 15);
             this.label8.TabIndex = 2;
             this.label8.Text = "设备状态";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(151, 17);
-            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label3.Location = new System.Drawing.Point(201, 21);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(65, 12);
+            this.label3.Size = new System.Drawing.Size(82, 15);
             this.label3.TabIndex = 2;
             this.label3.Text = "占用进程名";
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(230, 17);
-            this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label7.Location = new System.Drawing.Point(307, 21);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(53, 12);
+            this.label7.Size = new System.Drawing.Size(67, 15);
             this.label7.TabIndex = 1;
             this.label7.Text = "设备名称";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(82, 17);
-            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label2.Location = new System.Drawing.Point(109, 21);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(53, 12);
+            this.label2.Size = new System.Drawing.Size(67, 15);
             this.label2.TabIndex = 2;
             this.label2.Text = "设备状态";
             // 
@@ -448,10 +429,9 @@
             // 
             this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(8, 17);
-            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label1.Location = new System.Drawing.Point(11, 21);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(53, 12);
+            this.label1.Size = new System.Drawing.Size(67, 15);
             this.label1.TabIndex = 1;
             this.label1.Text = "设备名称";
             // 
@@ -459,10 +439,9 @@
             // 
             this.deviceB2.BackColor = System.Drawing.Color.Yellow;
             this.deviceB2.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.deviceB2.Location = new System.Drawing.Point(242, 74);
-            this.deviceB2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.deviceB2.Location = new System.Drawing.Point(323, 92);
             this.deviceB2.Name = "deviceB2";
-            this.deviceB2.Size = new System.Drawing.Size(17, 18);
+            this.deviceB2.Size = new System.Drawing.Size(23, 22);
             this.deviceB2.TabIndex = 0;
             this.deviceB2.Text = "B2";
             this.deviceB2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -471,10 +450,9 @@
             // 
             this.deviceA3.BackColor = System.Drawing.Color.Yellow;
             this.deviceA3.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.deviceA3.Location = new System.Drawing.Point(23, 106);
-            this.deviceA3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.deviceA3.Location = new System.Drawing.Point(31, 132);
             this.deviceA3.Name = "deviceA3";
-            this.deviceA3.Size = new System.Drawing.Size(17, 18);
+            this.deviceA3.Size = new System.Drawing.Size(23, 22);
             this.deviceA3.TabIndex = 0;
             this.deviceA3.Text = "A3";
             this.deviceA3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -483,10 +461,9 @@
             // 
             this.deviceB1.BackColor = System.Drawing.Color.Yellow;
             this.deviceB1.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.deviceB1.Location = new System.Drawing.Point(242, 43);
-            this.deviceB1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.deviceB1.Location = new System.Drawing.Point(323, 54);
             this.deviceB1.Name = "deviceB1";
-            this.deviceB1.Size = new System.Drawing.Size(17, 18);
+            this.deviceB1.Size = new System.Drawing.Size(23, 22);
             this.deviceB1.TabIndex = 0;
             this.deviceB1.Text = "B1";
             this.deviceB1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -495,10 +472,9 @@
             // 
             this.deviceA2.BackColor = System.Drawing.Color.Yellow;
             this.deviceA2.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.deviceA2.Location = new System.Drawing.Point(23, 74);
-            this.deviceA2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.deviceA2.Location = new System.Drawing.Point(31, 92);
             this.deviceA2.Name = "deviceA2";
-            this.deviceA2.Size = new System.Drawing.Size(17, 18);
+            this.deviceA2.Size = new System.Drawing.Size(23, 22);
             this.deviceA2.TabIndex = 0;
             this.deviceA2.Text = "A2";
             this.deviceA2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -507,20 +483,19 @@
             // 
             this.deviceA1.BackColor = System.Drawing.Color.Yellow;
             this.deviceA1.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.deviceA1.Location = new System.Drawing.Point(23, 43);
-            this.deviceA1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.deviceA1.Location = new System.Drawing.Point(31, 54);
             this.deviceA1.Name = "deviceA1";
-            this.deviceA1.Size = new System.Drawing.Size(17, 18);
+            this.deviceA1.Size = new System.Drawing.Size(23, 22);
             this.deviceA1.TabIndex = 0;
             this.deviceA1.Text = "A1";
             this.deviceA1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // btn_createProcess1
             // 
-            this.btn_createProcess1.Location = new System.Drawing.Point(290, 21);
-            this.btn_createProcess1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btn_createProcess1.Location = new System.Drawing.Point(387, 26);
+            this.btn_createProcess1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btn_createProcess1.Name = "btn_createProcess1";
-            this.btn_createProcess1.Size = new System.Drawing.Size(68, 34);
+            this.btn_createProcess1.Size = new System.Drawing.Size(91, 42);
             this.btn_createProcess1.TabIndex = 4;
             this.btn_createProcess1.Text = "Create Process1";
             this.btn_createProcess1.UseVisualStyleBackColor = true;
@@ -528,10 +503,10 @@
             // 
             // btn_createProcess2
             // 
-            this.btn_createProcess2.Location = new System.Drawing.Point(370, 21);
-            this.btn_createProcess2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btn_createProcess2.Location = new System.Drawing.Point(493, 26);
+            this.btn_createProcess2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btn_createProcess2.Name = "btn_createProcess2";
-            this.btn_createProcess2.Size = new System.Drawing.Size(68, 34);
+            this.btn_createProcess2.Size = new System.Drawing.Size(91, 42);
             this.btn_createProcess2.TabIndex = 4;
             this.btn_createProcess2.Text = "Create Process2";
             this.btn_createProcess2.UseVisualStyleBackColor = true;
@@ -539,10 +514,10 @@
             // 
             // btn_createProcess3
             // 
-            this.btn_createProcess3.Location = new System.Drawing.Point(453, 19);
-            this.btn_createProcess3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btn_createProcess3.Location = new System.Drawing.Point(604, 24);
+            this.btn_createProcess3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btn_createProcess3.Name = "btn_createProcess3";
-            this.btn_createProcess3.Size = new System.Drawing.Size(68, 34);
+            this.btn_createProcess3.Size = new System.Drawing.Size(91, 42);
             this.btn_createProcess3.TabIndex = 4;
             this.btn_createProcess3.Text = "Create Process3";
             this.btn_createProcess3.UseVisualStyleBackColor = true;
@@ -550,10 +525,10 @@
             // 
             // btn_createProcess4
             // 
-            this.btn_createProcess4.Location = new System.Drawing.Point(533, 19);
-            this.btn_createProcess4.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btn_createProcess4.Location = new System.Drawing.Point(711, 24);
+            this.btn_createProcess4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btn_createProcess4.Name = "btn_createProcess4";
-            this.btn_createProcess4.Size = new System.Drawing.Size(68, 34);
+            this.btn_createProcess4.Size = new System.Drawing.Size(91, 42);
             this.btn_createProcess4.TabIndex = 4;
             this.btn_createProcess4.Text = "Create Process4";
             this.btn_createProcess4.UseVisualStyleBackColor = true;
@@ -561,10 +536,10 @@
             // 
             // btn_createProcess5
             // 
-            this.btn_createProcess5.Location = new System.Drawing.Point(290, 78);
-            this.btn_createProcess5.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btn_createProcess5.Location = new System.Drawing.Point(387, 98);
+            this.btn_createProcess5.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btn_createProcess5.Name = "btn_createProcess5";
-            this.btn_createProcess5.Size = new System.Drawing.Size(68, 34);
+            this.btn_createProcess5.Size = new System.Drawing.Size(91, 42);
             this.btn_createProcess5.TabIndex = 4;
             this.btn_createProcess5.Text = "Create Process5";
             this.btn_createProcess5.UseVisualStyleBackColor = true;
@@ -572,10 +547,10 @@
             // 
             // btn_createProcess6
             // 
-            this.btn_createProcess6.Location = new System.Drawing.Point(370, 78);
-            this.btn_createProcess6.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btn_createProcess6.Location = new System.Drawing.Point(493, 98);
+            this.btn_createProcess6.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btn_createProcess6.Name = "btn_createProcess6";
-            this.btn_createProcess6.Size = new System.Drawing.Size(68, 34);
+            this.btn_createProcess6.Size = new System.Drawing.Size(91, 42);
             this.btn_createProcess6.TabIndex = 4;
             this.btn_createProcess6.Text = "Create Process6";
             this.btn_createProcess6.UseVisualStyleBackColor = true;
@@ -583,10 +558,10 @@
             // 
             // btn_createProcess7
             // 
-            this.btn_createProcess7.Location = new System.Drawing.Point(453, 78);
-            this.btn_createProcess7.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btn_createProcess7.Location = new System.Drawing.Point(604, 98);
+            this.btn_createProcess7.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btn_createProcess7.Name = "btn_createProcess7";
-            this.btn_createProcess7.Size = new System.Drawing.Size(68, 34);
+            this.btn_createProcess7.Size = new System.Drawing.Size(91, 42);
             this.btn_createProcess7.TabIndex = 4;
             this.btn_createProcess7.Text = "Create Process7";
             this.btn_createProcess7.UseVisualStyleBackColor = true;
@@ -594,10 +569,10 @@
             // 
             // btn_createProcess8
             // 
-            this.btn_createProcess8.Location = new System.Drawing.Point(533, 78);
-            this.btn_createProcess8.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btn_createProcess8.Location = new System.Drawing.Point(711, 98);
+            this.btn_createProcess8.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btn_createProcess8.Name = "btn_createProcess8";
-            this.btn_createProcess8.Size = new System.Drawing.Size(68, 34);
+            this.btn_createProcess8.Size = new System.Drawing.Size(91, 42);
             this.btn_createProcess8.TabIndex = 4;
             this.btn_createProcess8.Text = "Create Process8";
             this.btn_createProcess8.UseVisualStyleBackColor = true;
@@ -611,11 +586,11 @@
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.SystmTimerLabel);
-            this.groupBox1.Location = new System.Drawing.Point(626, 21);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Location = new System.Drawing.Point(835, 26);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.groupBox1.Size = new System.Drawing.Size(86, 39);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.groupBox1.Size = new System.Drawing.Size(115, 49);
             this.groupBox1.TabIndex = 5;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "系统运行时间";
@@ -623,90 +598,92 @@
             // SystmTimerLabel
             // 
             this.SystmTimerLabel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.SystmTimerLabel.Location = new System.Drawing.Point(6, 14);
-            this.SystmTimerLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.SystmTimerLabel.Location = new System.Drawing.Point(8, 18);
             this.SystmTimerLabel.Name = "SystmTimerLabel";
-            this.SystmTimerLabel.Size = new System.Drawing.Size(75, 18);
+            this.SystmTimerLabel.Size = new System.Drawing.Size(100, 22);
             this.SystmTimerLabel.TabIndex = 0;
             this.SystmTimerLabel.Click += new System.EventHandler(this.label4_Click);
             // 
             // groupBox5
             // 
-            this.groupBox5.Controls.Add(this.listView1);
-            this.groupBox5.Location = new System.Drawing.Point(9, 164);
-            this.groupBox5.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox5.Controls.Add(this.listView_ready);
+            this.groupBox5.Location = new System.Drawing.Point(12, 205);
+            this.groupBox5.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.groupBox5.Size = new System.Drawing.Size(158, 267);
+            this.groupBox5.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.groupBox5.Size = new System.Drawing.Size(211, 334);
             this.groupBox5.TabIndex = 6;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "就绪队列";
             // 
-            // listView1
+            // listView_ready
             // 
-            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader1,
-            this.columnHeader2});
-            this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(4, 19);
-            this.listView1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(150, 244);
-            this.listView1.TabIndex = 0;
-            this.listView1.UseCompatibleStateImageBehavior = false;
-            this.listView1.View = System.Windows.Forms.View.Details;
+            this.listView_ready.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.readyName,
+            this.readyNum});
+            this.listView_ready.GridLines = true;
+            this.listView_ready.HideSelection = false;
+            this.listView_ready.Location = new System.Drawing.Point(5, 24);
+            this.listView_ready.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.listView_ready.Name = "listView_ready";
+            this.listView_ready.Size = new System.Drawing.Size(199, 304);
+            this.listView_ready.TabIndex = 0;
+            this.listView_ready.UseCompatibleStateImageBehavior = false;
+            this.listView_ready.View = System.Windows.Forms.View.Details;
             // 
-            // columnHeader1
+            // readyName
             // 
-            this.columnHeader1.Text = "进程名称";
-            this.columnHeader1.Width = 80;
+            this.readyName.Text = "进程名称";
+            this.readyName.Width = 80;
             // 
-            // columnHeader2
+            // readyNum
             // 
-            this.columnHeader2.Text = "进程编号";
-            this.columnHeader2.Width = 80;
+            this.readyNum.Text = "进程编号";
+            this.readyNum.Width = 80;
             // 
             // groupBox6
             // 
-            this.groupBox6.Controls.Add(this.listView2);
-            this.groupBox6.Location = new System.Drawing.Point(177, 164);
-            this.groupBox6.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox6.Controls.Add(this.listView_block);
+            this.groupBox6.Location = new System.Drawing.Point(236, 205);
+            this.groupBox6.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.groupBox6.Size = new System.Drawing.Size(159, 267);
+            this.groupBox6.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.groupBox6.Size = new System.Drawing.Size(212, 334);
             this.groupBox6.TabIndex = 6;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "阻塞队列";
             // 
-            // listView2
+            // listView_block
             // 
-            this.listView2.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader3,
-            this.columnHeader4});
-            this.listView2.HideSelection = false;
-            this.listView2.Location = new System.Drawing.Point(4, 19);
-            this.listView2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.listView2.Name = "listView2";
-            this.listView2.Size = new System.Drawing.Size(150, 244);
-            this.listView2.TabIndex = 0;
-            this.listView2.UseCompatibleStateImageBehavior = false;
-            this.listView2.View = System.Windows.Forms.View.Details;
+            this.listView_block.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.blockName,
+            this.blockNum});
+            this.listView_block.GridLines = true;
+            this.listView_block.HideSelection = false;
+            this.listView_block.Location = new System.Drawing.Point(5, 24);
+            this.listView_block.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.listView_block.Name = "listView_block";
+            this.listView_block.Size = new System.Drawing.Size(199, 304);
+            this.listView_block.TabIndex = 0;
+            this.listView_block.UseCompatibleStateImageBehavior = false;
+            this.listView_block.View = System.Windows.Forms.View.Details;
             // 
-            // columnHeader3
+            // blockName
             // 
-            this.columnHeader3.Text = "进程名称";
-            this.columnHeader3.Width = 80;
+            this.blockName.Text = "进程名称";
+            this.blockName.Width = 80;
             // 
-            // columnHeader4
+            // blockNum
             // 
-            this.columnHeader4.Text = "进程编号";
-            this.columnHeader4.Width = 80;
+            this.blockNum.Text = "进程编号";
+            this.blockNum.Width = 80;
             // 
             // FileSystem_Button
             // 
-            this.FileSystem_Button.Location = new System.Drawing.Point(394, 272);
+            this.FileSystem_Button.Location = new System.Drawing.Point(525, 340);
+            this.FileSystem_Button.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.FileSystem_Button.Name = "FileSystem_Button";
-            this.FileSystem_Button.Size = new System.Drawing.Size(102, 37);
+            this.FileSystem_Button.Size = new System.Drawing.Size(136, 46);
             this.FileSystem_Button.TabIndex = 7;
             this.FileSystem_Button.Text = "文件系统";
             this.FileSystem_Button.UseVisualStyleBackColor = true;
@@ -714,9 +691,9 @@
             // 
             // Form_main
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(900, 640);
+            this.ClientSize = new System.Drawing.Size(1200, 800);
             this.Controls.Add(this.FileSystem_Button);
             this.Controls.Add(this.groupBox6);
             this.Controls.Add(this.groupBox5);
@@ -733,7 +710,7 @@
             this.Controls.Add(this.groupBox_result);
             this.Controls.Add(this.groupBox_storage);
             this.Controls.Add(this.groupBox_power);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "Form_main";
             this.Text = "Form_main";
             this.Load += new System.EventHandler(this.Form_main_Load);
@@ -802,13 +779,13 @@
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.Label result_Label;
         private System.Windows.Forms.GroupBox groupBox5;
-        private System.Windows.Forms.ListView listView1;
-        private System.Windows.Forms.ColumnHeader columnHeader1;
-        private System.Windows.Forms.ColumnHeader columnHeader2;
+        private System.Windows.Forms.ListView listView_ready;
+        private System.Windows.Forms.ColumnHeader readyName;
+        private System.Windows.Forms.ColumnHeader readyNum;
         private System.Windows.Forms.GroupBox groupBox6;
-        private System.Windows.Forms.ListView listView2;
-        private System.Windows.Forms.ColumnHeader columnHeader3;
-        private System.Windows.Forms.ColumnHeader columnHeader4;
+        private System.Windows.Forms.ListView listView_block;
+        private System.Windows.Forms.ColumnHeader blockName;
+        private System.Windows.Forms.ColumnHeader blockNum;
         private System.Windows.Forms.Button FileSystem_Button;
     }
 }
